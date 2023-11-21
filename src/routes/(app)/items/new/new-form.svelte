@@ -63,7 +63,6 @@
 				<Form.FieldErrors />
 			</Form.Field>
 
-<!-- min="1" -->
 			<Form.Field {form} name="points">
 				<Form.Control let:attrs>
 					<Form.Label>Points</Form.Label>

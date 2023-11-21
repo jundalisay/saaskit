@@ -67,20 +67,7 @@
 				<Form.FieldErrors />
 			</Form.Field>
 
-<!-- min="1" -->
-<!-- 			<Form.Field {form} name="points">
-				<Form.Control let:attrs>
-					<Form.Label>Points</Form.Label>
-					<Input
-						{...attrs}
-						required
-						type="number"
-						min="0.1"
-						bind:value={$formData.points}
-					/>
-				</Form.Control>
-				<Form.FieldErrors />
-			</Form.Field> -->
+
 
 			<Form.Field {form} name="location">
 				<Form.Control let:attrs>

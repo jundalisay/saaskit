@@ -169,3 +169,8 @@ If you prefer another host you can explore alternatives:
   </div>
 </div>
 {/if}
+
+use .coerce is zod for number strings
+
+make a blog page using svelte 4 and sveltekit 2 that implements a Gemini chat div at the bottom. The chat has no input. It uses the information on the blog page to make its response which is limited to 500 characters. Use packages gemini-ai and axios
+

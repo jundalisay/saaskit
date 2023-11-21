@@ -3,6 +3,41 @@
   import { ScatterChart, LineChart, BarChart, PieChart, Chart, AreaChart, Svg, Axis, Bars } from 'layerchart';
   import PostForm from './post-form.svelte';
 
+  // import {  PRIVATE_API_KEY } from '$env/static/private';
+
+  import axios from "axios";
+  import { json } from '@sveltejs/kit';
+  // import { env } from '$env/dynamic/private'; 
+  import Gemini from "gemini-ai";
+
+  // export let blogContent = '';
+
+  // let chatResponse = '';
+
+  // // A simple function to generate a response based on blog content
+  // function generateResponse(content) {
+  //   const responseMaxLength = 500;
+
+  //   // Use the blog content to generate a response (simulated here)
+  //   const extractedKeyPoints = content.split('\n')
+  //     .filter(line => line.trim().length > 0)
+  //     .slice(0, 3)
+  //     .join(' ');
+
+  //   let response = `Here's a summary of the post: ${extractedKeyPoints}.`;
+    
+  //   if (response.length > responseMaxLength) {
+  //     response = response.substring(0, responseMaxLength) + '...';
+  //   }
+
+  //   return response;
+  // }
+
+  // // Generate the chat response when the component is mounted
+  // import { onMount } from 'svelte';
+  // onMount(() => {
+  //   chatResponse = generateResponse(blogContent);
+  // });
 
 
 const data = [
@@ -125,7 +160,6 @@ const multiSeriesData = [
   }
 ]
 
-
 const dateSeriesData = [
   {
     "date": new Date('2024-12-30T16:00:00.000Z'),
@@ -242,11 +276,62 @@ const penguinDataBySpecies = [
   ]
 ]
 
+
+  const gemini = new Gemini(123123124);
+
+  /**PRIVATE_API_KEY
+   * Sends a POST request to create a chat and return the result as JSON.
+   *
+   * @param {import('@sveltejs/kit').RequestEvent } request - The request object containing the query.
+   * @return {Promise<object>} The JSON response with the chat text or an error message.
+   */
+  export async function POST({ request }) {
+    // const { msg, chats } = await request.json();
+    // console.log(msg, chats);
+
+    if (!msg) { return json({ error: 'No message provided' }, { status: 400 });}
+    
+    try {
+      const chat = gemini.createChat({
+        messages: data,
+        temperature: 0.7,
+        maxOutputTokens: 1000
+      });
+      
+      let text = await gemini.ask(msg.text);
+
+      return json({ text }, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json', 
+        },
+      });
+    } 
+    catch (error) {
+      return json({ error: error.message }, { status: 500 });
+    }
+  }
+
+  let chatResponse = "";
+
+  // async () => {
+  //   // Fetch a response from Gemini AI based on the blog content
+  //   try {
+  //     const response = await axios.post("https://api.gemini-ai.com/your-endpoint", {
+  //       text: data,
+  //     });
+  //     chatResponse = response.data.message.substring(0, 500); // Ensure the response is limited to 500 characters
+  //   } catch (error) {
+  //     chatResponse = "Sorry, there was an error fetching a response from Gemini AI.";
+  //   }
+  // };
+
+
 </script>
 
 
 <svelte:head>
-  <title>Posts</title>
+  <title>Dashboard</title>
 </svelte:head>
 
 
@@ -449,8 +534,90 @@ const penguinDataBySpecies = [
       </div>
 
 
+  <div class="chat-container">
+    <div class="chat-response">
+      <p>{chatResponse}</p>
+    </div>
+  </div>
+
+<div class="chat-container">
+        <div class="chat-box">
+          <p><strong>Gemini Chat:</strong></p>
+          <p>{chatResponse}</p>
+        </div>
+      </div>
+
     </div>
 
   </div>
 
 </section>
+
+
+
+<style>
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .chat-box {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .chat-box p {
+    margin: 0;
+  }
+
+  .chat-box strong {
+    color: #2d2d2d;
+  }
+
+  .chat-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: #f8f9fa;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chat-response {
+    font-family: "Arial", sans-serif;
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5;
+  }  
+</style>
+
+
+<!-- <script context="module" lang="ts">
+  export const ssr = true; // Enable SSR to render the page on the server
+
+  // Fetch blog content dynamically on the server
+  export async function load() {
+    // Your blog content - this can be fetched from an API or a markdown file
+    const blogContent = `
+      Welcome to my blog! Here, I share insights about various topics including technology, AI, and more.
+      Today, we'll be discussing the advancements in artificial intelligence and how it is shaping the future.
+      AI is transforming industries and creating new opportunities for innovation.
+    `;
+    return { props: { blogContent } };
+  }
+</script> -->
