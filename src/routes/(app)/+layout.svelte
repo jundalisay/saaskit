@@ -15,25 +15,15 @@
 </script>
 
 <div class="flex min-h-screen w-full flex-col bg-muted/40">
-	<aside
-		class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex"
-	>
+	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex" >
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
-			<a
-				href="/"
-				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8"
-			>
+			<a href="/" class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8" >
 				<Logo />
 				<span class="sr-only">SaaS Kit</span>
 			</a>
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
-					<NavLink
-						href="/dashboard"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						activeClass="bg-accent text-accent-foreground"
-						{builder}
-					>
+					<NavLink href="/dashboard" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
 						<Home class="h-5 w-5" />
 						<span class="sr-only">Dashboard</span>
 					</NavLink>
@@ -94,18 +84,19 @@
 				</Sheet.Content>
 			</Sheet.Root>
 			<Breadcrumbs />
-			<!-- <div class="relative ml-auto flex-1 md:grow-0">
-				<Search
-					class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"
-				/>
-				<Input
-					type="search"
-					placeholder="Search..."
-					class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-				/>
-			</div> -->
+<!-- 		<div class="relative ml-auto flex-1 md:grow-0">
+					<Search
+						class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"
+					/>
+					<Input
+						type="search"
+						placeholder="Search..."
+						class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+					/>
+				</div> -->
 			<PersonalMenu user={data.user} />
 		</header>
+		
 		<main class="flex flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
 			<slot />
 		</main>
