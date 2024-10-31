@@ -19,6 +19,9 @@ create policy "Users can insert their own profile." on profiles
 create policy "Users can update own profile." on profiles
   for update using (auth.uid() = id);
 
+
+
+
 -- Create Stripe Customer Table
 -- One stripe customer per user (PK enforced)
 -- Limit RLS policies -- mostly only server side access
@@ -37,6 +40,8 @@ create type stripe_payment_mode as enum (
   'payment',
   'subscription'
 );
+
+
 
 -- Create table for user products
 -- Used to store which products a user has access to and how they paid for them.

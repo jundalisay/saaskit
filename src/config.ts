@@ -6,7 +6,7 @@ export const WebsiteName: string = 'Pantrypoints Circle';
 your Supabase project settings `/supabase/config.toml` */
 export const oAuthProviders: Provider[] = [
 	'google',
-	'twitter',
+	// 'twitter',
 	// 'apple', // Consts $99/year to use Apple OAuth
 	// 'facebook',
 	'github',

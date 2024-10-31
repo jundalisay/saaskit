@@ -1,19 +1,20 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { WebsiteName } from '../../../../config';
+	// import { WebsiteName } from '../../../../config';
 	import ForgotPasswordForm from './forgot-password-form.svelte';
 
 	export let data;
 </script>
 
 <svelte:head>
-	<title>Forgot {WebsiteName} Password</title>
+	<title>Forgot Password</title>
 </svelte:head>
 
 <Card.Root class="mx-auto max-w-sm">
 	<Card.Header>
 		<Card.Title tag="h1" class="text-2xl">
-			Forgot <span class="sr-only">{WebsiteName}</span> password
+			Forgot password
+			<!-- <span class="sr-only">{WebsiteName}</span> -->
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-4">

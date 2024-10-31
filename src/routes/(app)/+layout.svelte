@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Apple from '~icons/lucide/apple';
+	import Award from '~icons/lucide/award';	
 	import Home from '~icons/lucide/home';
 	import PanelLeft from '~icons/lucide/panel-left';
 	import Settings from '~icons/lucide/settings';
@@ -14,21 +16,30 @@
 	export let data;
 </script>
 
-<div class="flex min-h-screen w-full flex-col bg-muted/40">
+<div class="flex min-h-screen w-full flex-col bg-muted">
 	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex" >
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a href="/" class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8" >
-				<Logo />
-				<span class="sr-only">SaaS Kit</span>
+				<!-- <Logo /> -->
+				<img src="/images/logo@512.png">
 			</a>
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<NavLink href="/dashboard" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
 						<Home class="h-5 w-5" />
-						<span class="sr-only">Dashboard</span>
+						<span class="sr-only">Points</span>
 					</NavLink>
 				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
+				<Tooltip.Content side="right">Points</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/items" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Apple class="h-5 w-5" />
+						<span class="sr-only">Items</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Items</Tooltip.Content>
 			</Tooltip.Root>
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -38,8 +49,7 @@
 						href="/settings"
 						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						activeClass="bg-accent text-accent-foreground"
-						{builder}
-					>
+						{builder}>
 						<Settings class="h-5 w-5" />
 						<span class="sr-only">Settings</span>
 					</NavLink>

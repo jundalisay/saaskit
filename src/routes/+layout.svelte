@@ -8,7 +8,7 @@
 	import { expoOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
-	import MetaTags from './(marketing)/meta-tags.svelte';
+	// import MetaTags from './(marketing)/meta-tags.svelte';
 
 	export let data;
 
@@ -36,8 +36,7 @@
 		// need to look into dynamic path imports; for now - switch
 		switch (alertDialog) {
 			case 'account-deletion':
-				return (await import('./alert-dialogs/account-deletion.svelte'))
-					.default;
+				return (await import('./alert-dialogs/account-deletion.svelte')).default;
 			case 'reset-password':
 				return (await import('./alert-dialogs/reset-password.svelte')).default;
 			default:
@@ -67,7 +66,7 @@
 	</AlertDialog.Content>
 </AlertDialog.Root>
 
-<MetaTags />
+<!-- <MetaTags /> -->
 <ModeWatcher />
 <CookiesBanner />
 

@@ -20,14 +20,14 @@
 				href="/settings/security"
 				activeClass="font-semibold text-primary"
 			>
-				Security
+				Password
 			</NavLink>
-			<NavLink
-				href="/settings/billing"
+			<!-- <NavLink
+				href="/settings/"
 				activeClass="font-semibold text-primary"
 			>
-				Billing
-			</NavLink>
+				asdf
+			</NavLink> -->
 		</nav>
 		<div class="flex flex-1 flex-col gap-6">
 			<slot />

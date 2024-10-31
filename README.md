@@ -1,4 +1,4 @@
-### SaaS Kit 
+## SaaS Kit 
 
 - SvelteKit, Tailwind, shadcn-svelte, Postgres, and Supabase.
 - Additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
@@ -11,7 +11,6 @@
 - Subscriptions powered by Stripe Checkout
 - Pricing page
 - Contact-us form
-- Billing portal: self serve to change card, upgrade, cancel, or download receipts
 - Style toolkit: theming and UI components
 - Responsive: designed for mobile and desktop.
 - Extensible: all the tools you need to make additional marketing pages, UI components, admin portals, database backends, API endpoints, and more.
@@ -28,9 +27,6 @@
   - Serverless compute: Cloudflare Workers
   - Authentication: Supabase Auth
   - Database: Supabase Postgres
-- Payments
-  - Stripe Checkout
-  - Stripe Portal
 
 
 ```sh

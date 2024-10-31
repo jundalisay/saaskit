@@ -4,8 +4,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import type { AuthChangeEvent } from '@supabase/supabase-js';
 	import { onMount } from 'svelte';
-	import { WebsiteName } from '../../../../config';
-	import SocialsAuth from '../components/socials-auth.svelte';
+	// import SocialsAuth from '../components/socials-auth.svelte';
 	import LoginForm from './login-form.svelte';
 
 	export let data;
@@ -29,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>Sign in to {WebsiteName}</title>
+	<title>Sign in</title>
 </svelte:head>
 
 {#if $page.url.searchParams.get('verified') == 'true'}
@@ -49,14 +48,20 @@
 		<span>Email verified! Please log in.</span>
 	</div>
 {/if}
-<Card.Root class="mx-auto max-w-sm">
+
+
+
+
+<div class="py-8">.</div>
+
+<Card.Root class="mx-auto max-w-sm my-6">
 	<Card.Header>
 		<Card.Title tag="h1" class="text-2xl">
-			Log in <span class="sr-only">to {WebsiteName}</span>
+			Log in 
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-4">
-		<SocialsAuth />
+		<!-- <SocialsAuth /> -->
 
 		<div class="flex flex-col gap-3">
 			<p class="text-sm text-muted-foreground">
