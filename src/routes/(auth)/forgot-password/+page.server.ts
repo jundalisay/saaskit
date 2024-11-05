@@ -7,18 +7,16 @@ import type { PageServerLoad } from './$types';
 import { formSchema } from './schema';
 
 export const load: PageServerLoad = async () => {
-	return {
-		form: await superValidate(zod(formSchema)),
-	};
+	return {form: await superValidate(zod(formSchema)),};
 };
+
+
 
 export const actions: Actions = {
 	default: async ({ url, request, locals: { supabase } }) => {
 		const form = await superValidate(request, zod(formSchema));
 		if (!form.valid) {
-			return fail(400, {
-				form,
-			});
+			return fail(400, {form,});
 		}
 
 		const { email } = form.data;
@@ -27,16 +25,10 @@ export const actions: Actions = {
 			return setError(form, '', 'Invalid redirect URL.');
 		}
 
-		const { error } = await supabase.auth.resetPasswordForEmail(email, {
-			redirectTo,
-		});
+		const { error } = await supabase.auth.resetPasswordForEmail(email, {redirectTo,});
 
 		if (error) {
-			return setError(
-				form,
-				'',
-				'An error occured while sending the reset email. Please try again later.',
-			);
+			return setError(form, '', 'Could not send the reset email.');
 		}
 
 		return message(form, {

@@ -19,6 +19,8 @@
 <EmailForm data={data.emailForm} user={data.user} />
 <InfoForm data={data.infoForm} />
 
+
+
 <Card.Root class="border-destructive bg-destructive/5 text-destructive">
 	<Card.Header>
 		<Card.Title>Delete Account</Card.Title>

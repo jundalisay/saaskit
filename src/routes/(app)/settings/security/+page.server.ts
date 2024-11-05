@@ -107,12 +107,7 @@ export const actions = {
 		}
 
 		return 'old_password' in form.data
-			? message(form, {
-					success: 'Password updated',
-				})
-			: {
-					form,
-					success: 'Password set',
-				};
+			? message(form, {success: 'Password updated',})
+			: {form, success: 'Password set',};
 	},
 };

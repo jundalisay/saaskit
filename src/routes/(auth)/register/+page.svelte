@@ -36,7 +36,9 @@
 			<p class="text-sm text-muted-foreground">
 				Create an account with your email address below.
 			</p>
+			
 			<RegisterForm data={data.form} />
+
 			<div class="mt-4 text-center text-sm">
 				Already have an account?
 				<a href="/login" class="underline">Log in</a>.

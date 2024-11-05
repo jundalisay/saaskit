@@ -19,7 +19,9 @@ export const actions: Actions = {
 		const provider = event.url.searchParams.get('provider') as Provider;
 		const searchParams = event.url.searchParams;
 		const redirectTo = searchParams.get('redirectTo');
-		searchParams.set('next', searchParams.get('next') || '/dashboard');
+
+		searchParams.set('next', searchParams.get('next') || '/');		
+		// searchParams.set('next', searchParams.get('next') || '/dashboard');
 
 		if (provider) {
 			if (!redirectTo) return fail(400, {});
@@ -63,6 +65,7 @@ export const actions: Actions = {
 			return setError(form, '', 'Invalid credentials');
 		}
 
-		redirect(303, '/auth/callback?next=/dashboard');
+		// redirect(303, '/auth/callback?next=/dashboard');
+		redirect(303, '/auth/callback?next=/');
 	},
 };

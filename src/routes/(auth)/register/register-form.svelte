@@ -19,11 +19,15 @@
 	const { form: formData, enhance, submitting } = form;
 </script>
 
+
+
 <form method="POST" use:enhance class="grid gap-4">
+
 	<Form.Errors {form} />
+
 	<Form.Field {form} name="email">
 		<Form.Control let:attrs>
-			<Form.Label class="mb-2">Emial</Form.Label>
+			<Form.Label class="mb-2">Email</Form.Label>
 			<Input
 				{...attrs}
 				type="email"
@@ -34,6 +38,35 @@
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
+
+	<Form.Field {form} name="name">
+		<Form.Control let:attrs>
+			<Form.Label class="mb-2">Codename</Form.Label>
+			<Input
+				{...attrs}
+				type="text"
+				placeholder="batman"
+				required
+				bind:value={$formData.name}
+			/>
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>	
+
+	<Form.Field {form} name="phone">
+		<Form.Control let:attrs>
+			<Form.Label class="mb-2">Mobile Phone Number</Form.Label>
+			<Input
+				{...attrs}
+				type="text"
+				placeholder="+63960 123 1234"
+				required
+				bind:value={$formData.phone}
+			/>
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>		
+
 	<Form.Field {form} name="password">
 		<Form.Control let:attrs>
 			<Form.Label>Password</Form.Label>
@@ -46,10 +79,9 @@
 			/>
 		</Form.Control>
 		<Form.FieldErrors />
-		<Form.Description class="text-right text-xs"
-			>At least 6 characters long</Form.Description
-		>
+		<Form.Description class="text-right text-xs">At least 6 characters long</Form.Description>
 	</Form.Field>
+
 	<Form.Button class="w-full" disabled={$submitting}>
 		{#if $submitting}
 			<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />

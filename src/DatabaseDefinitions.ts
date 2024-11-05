@@ -40,6 +40,8 @@ export interface Database {
 			profiles: {
 				Row: {
 					name: string | null;
+					first: string | null;
+					last: string | null;				
 					id: string;
 					updated_at: string | null;
 					created_at: Date;

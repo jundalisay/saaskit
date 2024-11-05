@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	// 	throw redirect(303, '/login');
 	// }
 
-	// get profile info
+	// get profile name into `info``
 	let info;
 	if (user) {
 		const { data, error } = await locals.supabase
@@ -33,9 +33,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 		info = data;
 	}
+	console.log("user: " + user.email);
+	console.log("info: " + info.name);
 
 	const { data: passwordSet } = await locals.supabase.rpc('user_password_set');
 
+	// put info in the schema then assign the whole thing to infoForm var
 	return {
 		emailForm: await superValidate(user, zod(emailFormSchema)),
 		infoForm: await superValidate(info, zod(infoFormSchema)),

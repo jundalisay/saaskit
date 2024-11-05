@@ -1,7 +1,18 @@
+// import { z } from 'zod';
+
+// export const infoFormSchema = z.object({
+// 	content: z.string().trim().nullable(),
+// });
+
+// export type PostFormSchema = typeof postFormSchema;
+
+
 import { z } from 'zod';
 
 export const emailFormSchema = z.object({
-	email: z.string({ required_error: 'Please fill in the email' }).email({ message: 'Invalid email' }),
+	email: z
+		.string({ required_error: 'Please fill in the email' })
+		.email({ message: 'Invalid email' }),
 });
 
 export type EmailFormSchema = typeof emailFormSchema;

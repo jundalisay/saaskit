@@ -2,6 +2,7 @@
 	import Apple from '~icons/lucide/apple';
 	import Award from '~icons/lucide/award';	
 	import Home from '~icons/lucide/home';
+	import Org from '~icons/lucide/building';	
 	import PanelLeft from '~icons/lucide/panel-left';
 	import Settings from '~icons/lucide/settings';
 
@@ -16,6 +17,9 @@
 	export let data;
 </script>
 
+
+<!-- LEFT MENU -->
+
 <div class="flex min-h-screen w-full flex-col bg-muted">
 	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex" >
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -25,8 +29,8 @@
 			</a>
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
-					<NavLink href="/dashboard" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
-						<Home class="h-5 w-5" />
+					<NavLink href="/points" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Award class="h-5 w-5" />
 						<span class="sr-only">Points</span>
 					</NavLink>
 				</Tooltip.Trigger>
@@ -41,6 +45,15 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Items</Tooltip.Content>
 			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/orgs" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Org class="h-5 w-5" />
+						<span class="sr-only">Orgs</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Orgs</Tooltip.Content>
+			</Tooltip.Root>			
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
 			<Tooltip.Root>
@@ -106,8 +119,9 @@
 				</div> -->
 			<PersonalMenu user={data.user} />
 		</header>
-		
-		<main class="flex flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+
+		<!-- <main class="flex flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8"> -->
+		<main>		
 			<slot />
 		</main>
 	</div>

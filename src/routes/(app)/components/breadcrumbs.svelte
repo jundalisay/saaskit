@@ -8,11 +8,13 @@
 		.filter((part) => part !== 'dashboard');
 </script>
 
+
+
 <Breadcrumb.Root class="hidden md:flex">
 	<Breadcrumb.List>
-		<Breadcrumb.Item>
+<!-- 		<Breadcrumb.Item>
 			<Breadcrumb.Link href="/dashboard">Dashboard</Breadcrumb.Link>
-		</Breadcrumb.Item>
+		</Breadcrumb.Item> -->
 		{#each parts as part, i}
 			<Breadcrumb.Separator />
 			<Breadcrumb.Item>

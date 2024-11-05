@@ -8,10 +8,10 @@
 </script>
 
 <svelte:head>
-	<title>Security | Settings</title>
+	<title>Password | Settings</title>
 </svelte:head>
 
-<h2 class="text-xl font-semibold">Security</h2>
+<h2 class="text-xl font-semibold">Password</h2>
 
 {#if form?.success}
 	<p class="text-green-700">{form.success}</p>
