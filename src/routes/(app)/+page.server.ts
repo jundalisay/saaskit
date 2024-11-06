@@ -55,7 +55,7 @@ export const actions: Actions = {
 		// let n = d.toString(36);
 		// const insert = await supabase.from('posts').insert({
 		const insert = supabaseServiceRole.from('posts').insert({
-			id: bigIntTimestamp.toString(), 
+			// id: bigIntTimestamp.toString(), 
 			// crypto.getRandomValues(typedArray), 
 			// Math.random(),
 			user_id: user.id,
