@@ -15,6 +15,11 @@
 - Responsive: designed for mobile and desktop.
 - Extensible: all the tools you need to make additional marketing pages, UI components, admin portals, database backends, API endpoints, and more.
 
+Added: 
+- Sveltekit Charts and Chartjs
+- i18n
+
+ 
 
 ## Tech Stack
 

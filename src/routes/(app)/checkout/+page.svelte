@@ -21,7 +21,12 @@
 <div class="p-4">
   <h1 class="text-2xl font-bold mb-4">Checkout</h1>
   
-  {#if cartItems.length > 0}
+<!--   {#if cartItems.length > 0}
+
+  {:else}
+    <p>No items in the cart.</p>
+  {/if} -->
+
     <table class="min-w-full border-collapse border border-gray-300">
       <thead>
         <tr>
@@ -46,7 +51,5 @@
     <div class="mt-4 font-bold">
       Total Price: ${totalPrice.toFixed(2)}
     </div>
-  {:else}
-    <p>No items in the cart.</p>
-  {/if}
+    
 </div>

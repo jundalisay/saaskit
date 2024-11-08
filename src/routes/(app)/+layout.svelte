@@ -2,11 +2,11 @@
 	import Apple from '~icons/lucide/apple';
 	import Award from '~icons/lucide/award';	
 	import Home from '~icons/lucide/home';
+	import List from '~icons/lucide/list';	
 	import Org from '~icons/lucide/building';	
 	import PanelLeft from '~icons/lucide/panel-left';
 	import Settings from '~icons/lucide/settings';
 
-	import Logo from '$lib/components/Logo.svelte';
 	import PersonalMenu from '$lib/components/personal-menu.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Sheet from '$lib/components/ui/sheet';
@@ -25,17 +25,8 @@
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a href="/" class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8" >
 				<!-- <Logo /> -->
-				<img src="/images/logo@512.png">
+				<img src="/logos/pp.png">
 			</a>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<NavLink href="/points" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
-						<Award class="h-5 w-5" />
-						<span class="sr-only">Points</span>
-					</NavLink>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Points</Tooltip.Content>
-			</Tooltip.Root>
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<NavLink href="/items" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
@@ -56,6 +47,24 @@
 			</Tooltip.Root>			
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/points" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Award class="h-5 w-5" />
+						<span class="sr-only">Points</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Points</Tooltip.Content>
+			</Tooltip.Root>			
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/transactions" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<List class="h-5 w-5" />
+						<span class="sr-only">Transactions</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Transactions</Tooltip.Content>
+			</Tooltip.Root>						
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<NavLink

@@ -2,13 +2,21 @@
 create table profiles (
   id uuid references auth.users on delete cascade not null primary key,
   "name" text,
+  "pin" text,
+  "photo" text,  
+  "description" text,
+  "region" text,
+  "city" text,
+  "palm_left" text,
+  "palm_right" text,
+  "blood" text,    
+  "disability" text,      
   updated_at timestamp with time zone,
   created_at timestamp with time zone default now()
 );
 -- Set up Row Level Security (RLS)
 -- See https://supabase.com/docs/guides/auth/row-level-security for more details.
-alter table profiles
-  enable row level security;
+-- alter table profiles enable row level security;
 
 create policy "Profiles are viewable by self." on profiles
   for select using (auth.uid() = id);
@@ -35,7 +43,7 @@ create table posts (
 create table items (
   id serial not null primary key,    
   user_id uuid references auth.users on delete cascade not null,    
-  "name" text, 
+  "name" text not null, 
   "description" text,
   "ppints" decimal,
   "price" decimal,
@@ -53,6 +61,29 @@ create table items (
   -- constraint user_products_user_id_fkey foreign key (user_id) references auth.users (id) on update cascade on delete cascade
 );
 -- alter table items enable row level security;
+
+create table orgs (
+  id serial not null primary key,    
+  user_id uuid references auth.users on delete cascade not null,    
+  owner_id uuid references auth.users on delete cascade not null,
+  "name" text not null, 
+  "description" text,
+  "region" text,
+  "city" text,
+  "address" text,
+  "logo" text,
+  "url1" text,
+  "url2" text,
+  "url3" text,
+  "url4" text,      
+  "url5" text,  
+  created_at timestamp with time zone not null default now(),
+  updated_at timestamp with time zone null
+  -- constraint user_products_pkey primary key (user_id, type),
+  -- constraint user_products_pkey primary key (user_id),    
+  -- -- constraint user_products_pkey primary key (user_id, stripe_product_id, type),
+  -- constraint user_products_user_id_fkey foreign key (user_id) references auth.users (id) on update cascade on delete cascade
+);
 
 
 create table transactions (
