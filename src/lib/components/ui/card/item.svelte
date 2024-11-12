@@ -17,15 +17,21 @@
     // Dispatch an event to notify the parent component to add the item to the cart
     dispatch('add-to-cart', cartItem);
   };
+
+  const goToDetails = (id) => {
+    goto(`/orgs/${id}`);
+  };  
 </script>
 
-<div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer" on:click>
+
+
+<div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-card cursor-pointer" on:click>
   <img class="w-full h-48 object-cover" src={item.photo} alt={item.name} />
   <div class="p-4">
     <h2 class="font-bold text-xl mb-2">{item.name}</h2>
     <p class="text-gray-700 text-base mb-4">{item.description}</p>
     <p class="text-lg font-semibold mb-4">${item.price.toFixed(2)}</p>
-    <button on:click={handleAddToCart} class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+    <button on:click={handleAddToCart} class="bg-accent hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
       Add to Cart
     </button>
   </div>

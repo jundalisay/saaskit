@@ -163,3 +163,19 @@ updateProfile: async (event) => {
       return redirect(303, '/login');
     }
 
+
+
+  // Function to filter items based on the search query
+  const filteredProducts = () => {
+    return items.filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ).sort((a, b) => {
+      if (sortOption === 'priceAsc') {
+        return a.price - b.price;
+      } else if (sortOption === 'priceDesc') {
+        return b.price - a.price;
+      } else {
+        return a.title.localeCompare(b.title); // Sort by title alphabetically
+      }
+    });
+  };
