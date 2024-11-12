@@ -3,7 +3,8 @@
 	import Award from '~icons/lucide/award';	
 	import Home from '~icons/lucide/home';
 	import List from '~icons/lucide/list';	
-	import Org from '~icons/lucide/building';	
+	import Org from '~icons/lucide/building';
+	import Users from '~icons/lucide/users';
 	import PanelLeft from '~icons/lucide/panel-left';
 	import Settings from '~icons/lucide/settings';
 
@@ -36,6 +37,20 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Items</Tooltip.Content>
 			</Tooltip.Root>
+
+
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/users" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Users class="h-5 w-5" />
+						<span class="sr-only">Users</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Users</Tooltip.Content>
+			</Tooltip.Root>
+
+
+
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<NavLink href="/orgs" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >

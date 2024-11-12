@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let item = {
     id: '',
     name: '',
@@ -18,9 +18,9 @@
     dispatch('add-to-cart', cartItem);
   };
 
-  const goToDetails = (id) => {
-    goto(`/orgs/${id}`);
-  };  
+  // const goToDetails = (id) => {
+  //   goto(`/orgs/${id}`);
+  // };
 </script>
 
 
@@ -31,9 +31,9 @@
     <h2 class="font-bold text-xl mb-2">{item.name}</h2>
     <p class="text-gray-700 text-base mb-4">{item.description}</p>
     <p class="text-lg font-semibold mb-4">${item.price.toFixed(2)}</p>
-    <button on:click={handleAddToCart} class="bg-accent hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+<!--     <button on:click={handleAddToCart} class="bg-accent hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
       Add to Cart
-    </button>
+    </button> -->
   </div>
 </div>
 

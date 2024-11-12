@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageServerData } from './$types';
-  import OrgCard from '$lib/components/ui/card/org.svelte';
+  import ProfileCard from '$lib/components/ui/card/profile.svelte';
   import { goto } from '$app/navigation';
 
   // expose session data?
@@ -29,14 +29,14 @@
     sortItems();
   };
 
-  // const goToDetails = (id) => {
-  //   goto(`/users/${id}`);
-  // };
+  const goToDetails = (id) => {
+    goto(`/profiles/${id}`);
+  };
 </script>
 
 
 <svelte:head>
-  <title>users</title>
+  <title>Users</title>
 </svelte:head>
 
 <!-- bind:value={sortOption} -->
@@ -74,9 +74,10 @@
 <!-- filteredProducts() -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {#if data.profiles}
-      {#each data.profiles as item}
-        <OrgCard {item} />
-<!-- on:click={()=> goToDetails(item.id)} -->
+      {#each data.profiles as profile}
+
+        <ProfileCard {profile} on:click={()=> goToDetails(profile.id)} />
+
       {/each}
     {:else}
     {/if}
