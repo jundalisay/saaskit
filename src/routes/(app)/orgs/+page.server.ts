@@ -9,7 +9,7 @@ export const load: PageServerData = async ({ locals, url }) => {
 	const { data } = await locals.supabase.from('orgs').select('*');
 
 	// data in PageServerLoad is all 
-	console.log('Page Server Ts orgs: ', data);
+	console.log('Page Server Ts orgs index: ', data);
 
 	// tell the client that items means the stuff queried from the db
 	return { orgs: data, q };

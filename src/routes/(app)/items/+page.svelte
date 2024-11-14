@@ -6,28 +6,14 @@
   // expose session data?
   export let data: PageServerData;
   export let q: string = "";
+  export let id;
 
   let error = '';
   let sortOption = '';
 
   console.log('Page Svelte Items: ', data.items);
 
-  // Function to sort items based on selected option
-  const sortItems = () => {
-    if (sortOption === 'titleAsc') {
-      data.items.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOption === 'titleDesc') {
-      data.items.sort((a, b) => b.name.localeCompare(a.name));
-    }
-  };
-
-  // Function to handle dropdown change
-  const handleSortChange = (event) => {
-    sortOption = event.target.value;
-    sortItems();
-  };
-
-  const goToDetails = (id) => {
+  const go = (id) => {
     goto(`/items/${id}`);
   };
 </script>
@@ -37,21 +23,20 @@
   <title>Items</title>
 </svelte:head>
 
-<!-- bind:value={sortOption} -->
+<!-- bind:value=sortOption on:change={handleSortChange}-->
 <div class="px-4">
 
-
-<div class="flex items-center justify-between p-4">
-  <h1 class="text-2xl font-bold">Items</h1>
-  <button class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Add
-  </button>
-</div>
+  <div class="flex items-center justify-between p-4">
+    <h1 class="text-2xl font-bold">Items</h1>
+    <button class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Add
+    </button>
+  </div>
 
 
   <div class="mx-auto px-5 grid justify-items-between mb-6">
     <form>
         <div class="flex">
-          <select bind:value={sortOption} on:change={handleSortChange} class="border border-gray-300 p-2 rounded">
+          <select bind:value={sortOption}  class="border border-gray-300 p-2 rounded">
             <option value="titleAsc">Sort by Title: A-Z</option>
             <option value="titleDesc">Sort by Title: Z-A</option>
           </select>      
@@ -76,7 +61,10 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {#if data.items}
       {#each data.items as item}
-        <ItemCard {item} on:click={()=> goToDetails(item.id)} />
+        <div >
+          <ItemCard {item} on:click={()=> go(item.id)} />          
+        </div>
+
       {/each}
     {:else}
     {/if}
@@ -85,3 +73,33 @@
 </div>
 
 
+<!-- <div class="search-container">
+    <input
+        type="text"
+        placeholder="Search..."
+        bind:value={searchQuery}
+        on:input={handleInput}
+        class="search-input"
+    />
+    
+    <div class="results-container">
+        {#if filteredItems.length === 0}
+            <p>No results found</p>
+        {:else}
+            {#each filteredItems as item}
+                <div class="result-item">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    {#if item.tags}
+                        <div class="tags">
+                            {#each item.tags as tag}
+                                <span class="tag">{tag}</span>
+                            {/each}
+                        </div>
+                    {/if}
+                </div>
+            {/each}
+        {/if}
+    </div>
+</div>
+ -->

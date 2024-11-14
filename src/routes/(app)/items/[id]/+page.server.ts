@@ -22,10 +22,9 @@ export const load: PageServerData = async ({ params, locals }) => {
 
 	const { data } = await locals.supabase.from('items').select('*').eq('id', id).single();    
 
-	console.log('Page Server Ts Expect struct: ', data);
+	console.log('Page Server Ts item show: ', data);
 	
 	return { item: data };
-
 
 	// console.log('Product user: ' + data.user_id);	
 	// console.log('User: ' + user.email);	
