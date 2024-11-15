@@ -10,13 +10,14 @@ import { formSchema } from './schema';
 export const load: PageServerLoad = async ({ locals }) => {
 	const { user } = await locals.safeGetSession();
 
-	let bunch;
+	let posts;
 
 	const { data } = await locals.supabase.from('posts').select('*');
-	bunch = data;
 	// return { bunch: bunch };
-	
-	return {bunch, form: await superValidate(zod(formSchema)),};
+
+	console.log('Page Server TS Posts:', data);
+
+	return {posts: data, form: await superValidate(zod(formSchema)),};
 };
 
 
