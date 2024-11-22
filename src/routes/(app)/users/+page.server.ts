@@ -13,7 +13,7 @@ export const load: PageServerData = async ({ locals, url }) => {
 	// const { data } = await locals.supabase.auth.admin.listUsers()
 
 	// data in PageServerLoad is all 
-	console.log('Page Server Ts data: ', data);
+	console.log('Page Server Ts users index: ', data);
 	// console.log('Page Server Ts users: ', data.users);
 
 	return { profiles: data, q };

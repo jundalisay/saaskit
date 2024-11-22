@@ -8,7 +8,7 @@
   // expose session data?
   export let data: PageServerData;
 
-  console.log('Page Svelte: ', data.item);
+  console.log('Page Svelte ITEM SHOW: ', data.item);
 
   let item; // This will hold the item data
   let amount = 0;
@@ -91,12 +91,11 @@
 
 
 <div class="p-4">
+
   <img class="w-full h-64 object-cover mb-4" src={data.item.photo} alt={data.item.title} />
   <h1 class="text-2xl font-bold mb-4">{data.item.name}</h1>
   <p class="text-lg mb-4">{data.item.description}</p>
   <p class="text-xl font-semibold mb-4">${data.item.price}</p>
-
-
 
     <label class="block mb-2">Amount to Get:</label>
     <input type="number" bind:value={amount} min="1" class="border border-gray-300 rounded p-2 w-full mb-4" />
@@ -122,17 +121,6 @@
     </button>
 
 
-
-
-
-
-
-
-
-
-
-
-
   <button on:click={handleAddToCart} class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
     Add to Cart
   </button>
@@ -141,11 +129,11 @@
     Edit
   </button>
 
-  <!-- <ProductForm {selectedProduct} on:submit={addOrUpdateProduct} on:delete={deleteProduct} /> -->
-
   <button on:click={() => deleteProduct(item)} class="text-blue-500 hover:underline">
     Delete
   </button>
+
+  <!-- <ProductForm {selectedProduct} on:submit={addOrUpdateProduct} on:delete={deleteProduct} /> -->
 
 </div>
 

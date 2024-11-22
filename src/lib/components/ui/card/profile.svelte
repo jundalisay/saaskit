@@ -15,9 +15,6 @@
     <img src={profile.photo} alt="{profile.name} Logo" class="w-16 h-16 rounded-full mr-4" />
     <div>
       <h2 class="text-xl font-bold">{profile.name}</h2>
-
-{profile.id}
-
       {#if profile.city}
         <p class="text-gray-600">{profile.city}, {profile.regiom}</p>
       {/if}

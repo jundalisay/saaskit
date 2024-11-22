@@ -27,11 +27,15 @@ export const load: PageServerData = async ({ locals, url }) => {
 	// });	
 
 	// data in PageServerLoad is all 
-	console.log('Page Server Ts items: ', data);
+
 
 	// console.log('Searched is: ', searched);	
 
 	// tell the client that items means the stuff queried from the db
+	// return { items: data, q };
+
 	return { items: data, q };
+
+	console.log('Page Server Ts items index: ', data);
 };
 

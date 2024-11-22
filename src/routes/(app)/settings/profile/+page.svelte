@@ -35,8 +35,7 @@
 					<Button
 						variant="destructive"
 						class="flex flex-nowrap items-center gap-2"
-						builders={[builder]}
-					>
+						builders={[builder]}>
 						<Trash class="h-4 w-4" />
 						Delete Account
 					</Button>

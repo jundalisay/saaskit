@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PageServerData } from "./$types";
+  import { Button } from '$lib/components/ui/button';
   import ItemCard from '$lib/components/ui/card/item.svelte';
   import { cart, addToCart } from '$lib/cartStore';
   import { goto } from '$app/navigation';
@@ -11,6 +12,10 @@
   console.log('Page Svelte Items: ', data.items);
 
   console.log('Page Svelte Profile: ', data.profile);
+
+  const go = (id) => {
+    goto(`/items/${id}`);
+  };
 
 </script>
 
@@ -33,23 +38,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex gap-2 px-2">
-                    <button
-                        class="flex-1 rounded bg-primary antialiased font-bold px-4 py-2">
-                        Follow
-                    </button>
-                    <button
-                        class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2">
-                        Follow
-                    </button>
-                    <button
-                        class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2">
-                        Follow
-                    </button>                                        
-                    <button
-                        class="flex-1 rounded-full border-2 border-gray-400 dark:border-gray-700 font-semibold text-black dark:text-white px-4 py-2">
-                        Message
-                    </button>
+                <div class="flex justify-center gap-2 px-2">
+
+                    <Button class="flex flex-nowrap items-center gap-2"
+                    >Follow</Button>
+
+                    <Button variant="outline" class="flex flex-nowrap items-center gap-2"
+                    >Follow</Button>
+
+                    <Button variant="secondary" class="flex flex-nowrap items-center gap-2"
+                    >Follow</Button>                               
+
                 </div>
             </div>
             <div class="px-4 py-4">
@@ -66,7 +65,7 @@
                       {:else}
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                           {#each data.items as item}
-                            <ItemCard {item} on:click={()=> goToDetails(item.id)} />
+                            <ItemCard {item} on:click={()=> go(item.id)} />
                           {/each}
                         </div>
                       {/if}                      
