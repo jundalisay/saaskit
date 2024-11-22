@@ -19,8 +19,6 @@ Added:
 - Sveltekit Charts and Chartjs
 - i18n
 
- 
-
 ## Tech Stack
 
 - Web Framework: SvelteKit
