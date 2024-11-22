@@ -15,6 +15,38 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const { data } = await locals.supabase.from('posts').select('*');
 	// return { bunch: bunch };
 
+
+// const { data } = await locals.supabase
+//   .from('posts')
+//   .select(`
+//     *,
+//     profiles (name)
+//   `);
+
+
+// if (error) {
+//   console.error('Error fetching posts:', error);
+//   return;
+// }
+
+
+
+// const { data } = await locals.supabase
+//       .from('posts')
+//       .select(`
+//         *,
+//         users (
+//           profiles (
+//             name
+//           )
+//         )
+//       `);
+
+
+    // const { data } = await locals.supabase
+    //   .from('posts')
+    //   .select(`*, profiles (name)`);
+
 	console.log('Page Server TS Posts:', data);
 
 	return {posts: data, form: await superValidate(zod(formSchema)),};
