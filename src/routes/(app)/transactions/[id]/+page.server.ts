@@ -8,14 +8,14 @@ let transactionDetails;
 
 // import { message, superValidate } from 'sveltekit-superforms';
 // import { zod } from 'sveltekit-superforms/adapters';
-// import { formSchema } from './schema';
+// import { formSchema } from './schema'; 
 
 export const load: PageServerData = async ({ params, locals }) => {
 
 	const { id } = params;
 	const { user } = await locals.safeGetSession();
    
-    const { data, error } = await supabase
+    const { data, error } = await locals.supabase
       .from('transactions')
       .select('*')
       .eq('id', id)

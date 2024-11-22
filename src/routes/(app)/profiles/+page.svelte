@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageServerData } from './$types';
-  import ItemCard from '$lib/components/ui/card/item.svelte';
+  import ProfileCard from '$lib/components/ui/card/profile.svelte';
   import { goto } from '$app/navigation';
 
   // expose session data?
@@ -10,7 +10,9 @@
   let error = '';
   let sortOption = '';
 
-  console.log('Page Svelte Items: ', data.items);
+  console.log('Page Svelte Profiles: ', data.profiles);
+  // console.log('Page Svelte Users: ', Object.keys(data)[0]);
+
 
   // Function to sort items based on selected option
   const sortItems = () => {
@@ -28,13 +30,13 @@
   };
 
   const goToDetails = (id) => {
-    goto(`/items/${id}`);
+    goto(`/profiles/${id}`);
   };
 </script>
 
 
 <svelte:head>
-  <title>Items</title>
+  <title>Users</title>
 </svelte:head>
 
 <!-- bind:value={sortOption} -->
@@ -42,9 +44,7 @@
 
 
 <div class="flex items-center justify-between p-4">
-  <h1 class="text-2xl font-bold">Items</h1>
-  <button class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Add
-  </button>
+  <h1 class="text-2xl font-bold">Users</h1>
 </div>
 
 
@@ -70,13 +70,14 @@
   </div>
 
 
-
   <!-- on:add-to-cart={handleAddToCart}  -->
 <!-- filteredProducts() -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#if data.items}
-      {#each data.items as item}
-        <ItemCard {item} on:click={()=> goToDetails(item.id)} />
+    {#if data.profiles}
+      {#each data.profiles as profile}
+
+        <ProfileCard {profile} on:click={()=> goToDetails(profile.id)} />
+
       {/each}
     {:else}
     {/if}

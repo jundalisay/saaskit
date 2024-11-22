@@ -27,7 +27,7 @@ export const load: PageServerData = async ({ locals, url }) => {
 	// });	
 
 	// data in PageServerLoad is all 
-	console.log('Page Server Ts items comma: ', data);
+	console.log('Page Server Ts items: ', data);
 
 	// console.log('Searched is: ', searched);	
 

@@ -1,4 +1,27 @@
-INSERT INTO "users" (email, password) VALUES ("snow@acme.org", "123123")
+-- INSERT INTO "users" (email, password) VALUES ("snow@acme.org", "123123")
+-- Seed users
+
+
+
+-- The `Post.createdBy` user with an email address ending in `"@acme.org"`
+INSERT INTO "User" (email, password) VALUES ("snow@acme.org", "123123")
+
+--- A `Post` with the title `"There is a lot of snow around here!"`
+-- INSERT INTO "Post" (title, content, createdBy) VALUES (
+--   "There is a lot of snow around here!",
+--   "Lorem ipsum dolar",
+--   1)
+
+-- --- Three `Post.Comment` from three different users.
+-- INSERT INTO "User" (name, email) VALUES ("Stephanie Shadow", "shadow@domain.com")
+-- INSERT INTO "Comment" (text, userId, postId) VALUES ("I love cheese", 2, 1)
+
+-- INSERT INTO "User" (name, email) VALUES ("John Rambo", "rambo@trymore.dev")
+-- INSERT INTO "Comment" (text, userId, postId) VALUES ("Lorem ipsum dolar sit", 3, 1)
+
+-- INSERT INTO "User" (name, email) VALUES ("Steven Plank", "s@plank.org")
+-- INSERT INTO "Comment" (text, userId, postId) VALUES ("Actually, that's not correct...", 4, 1)
+
 
 
 -- Step 1: Insert users (password hashing needs to be handled)

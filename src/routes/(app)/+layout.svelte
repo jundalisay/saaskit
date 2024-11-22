@@ -3,7 +3,8 @@
 	import Award from '~icons/lucide/award';	
 	import Home from '~icons/lucide/home';
 	import List from '~icons/lucide/list';	
-	import Org from '~icons/lucide/building';	
+	import Org from '~icons/lucide/building';
+	import Users from '~icons/lucide/users';
 	import PanelLeft from '~icons/lucide/panel-left';
 	import Settings from '~icons/lucide/settings';
 
@@ -36,6 +37,20 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Items</Tooltip.Content>
 			</Tooltip.Root>
+
+
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/users" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<Users class="h-5 w-5" />
+						<span class="sr-only">Users</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Users</Tooltip.Content>
+			</Tooltip.Root>
+
+
+
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<NavLink href="/orgs" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
@@ -80,7 +95,7 @@
 			</Tooltip.Root>
 		</nav>
 	</aside>
-	<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+	<div class="flex flex-col sm:gap-4 sm:py-2 sm:pl-14">
 		<header
 			class="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
