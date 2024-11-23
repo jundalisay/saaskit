@@ -86,17 +86,18 @@ export const actions = {
 		}
 
 		const form = await superValidate(event, zod(infoFormSchema));
-		if (!form.valid) {
-			return fail(400, {
-				infoForm: form,
-			});
-		}
+		if (!form.valid) {return fail(400, {infoForm: form, }); }
 
-		const { name } = form.data;
+		const {name, photo, description, region, city, palm_left, palm_right} = form.data;
+
+  // "blood" text,    
+  // "disability" text, 
 
 		const { error } = await supabase.from('profiles').upsert({
 			id: user.id,
 			name,
+			photo,
+			description, region, city, palm_left, palm_right,
 			updated_at: new Date(),
 		});
 
@@ -105,9 +106,7 @@ export const actions = {
 			return setError(form, '', 'Could not update info. Please try again.');
 		}
 
-		return message(form, {
-			success: 'Info updated.',
-		});
+		return message(form, {success: 'Info updated.',});
 	},
 	deleteAccount: async (event) => {
 		const { safeGetSession, supabase, supabaseServiceRole, stripe } =

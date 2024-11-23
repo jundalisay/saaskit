@@ -46,7 +46,7 @@ create table items (
   user_id uuid references auth.users on delete cascade not null,    
   "name" text not null, 
   "description" text,
-  "ppints" decimal,
+  "points" decimal,
   "price" decimal,
   "region" text,
   "city" text,

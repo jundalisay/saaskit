@@ -2,16 +2,13 @@
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
-	import {
-		superForm,
-		type Infer,
-		type SuperValidated,
-	} from 'sveltekit-superforms';
+	import {superForm, type Infer, type SuperValidated, } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
-	import { formSchema, type formSchema } from './schema';
+	import { formSchema, type FormSchema } from './schema';
 
-	export let data: SuperValidated<Infer<InfoFormSchema>>;
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	export let data: SuperValidated<Infer<FormSchema>>;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -19,18 +16,31 @@
 	});
 
 	const { form: formData, enhance, submitting, tainted, message } = form;
+
+	console.log("loaded page...");
 </script>
 
 
+
+<!--  -->
 <Card.Root>
-	<form method="POST" action="?/new" use:enhance>
+
+<!-- <SuperDebug action="?/items/new" data={form} /> -->
+
+	<form method="POST" use:enhance>
+		{#if $message?.success}
+			<p class="text-sm text-green-700">{$message.success}</p>
+		{:else}
+			<Form.Errors {form} />
+
+
 		<Card.Header>
-			<Card.Title>New Item</Card.Title>
 			<Card.Description>
 				Enter the details of your item.
 			</Card.Description>
 		</Card.Header>
 		<Card.Content>
+
 			<Form.Field {form} name="name">
 				<Form.Control let:attrs>
 					<Form.Label>Name</Form.Label>
@@ -44,14 +54,63 @@
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
+
+			<Form.Field {form} name="name">
+				<Form.Control let:attrs>
+					<Form.Label>Description</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Describe your item"
+						required
+						bind:value={$formData.description}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Field {form} name="name">
+				<Form.Control let:attrs>
+					<Form.Label>Points Price</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Banana"
+						required
+						bind:value={$formData.points}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Field {form} name="name">
+				<Form.Control let:attrs>
+					<Form.Label>Location</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Banana"
+						bind:value={$formData.location}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+												
 		</Card.Content>
+		
 		<Card.Footer class="flex gap-2">
+
+
+    <button on:click={()=> console.log("asdfasd")}  type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+      Create Item
+    </button>			
 			<Form.Button disabled={$submitting || !$tainted}>
 				{#if $submitting}
 					<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
 					Updating info…
 				{:else}
-					Update Info
+					Create Item
 				{/if}
 			</Form.Button>
 			{#if $message?.success}
@@ -60,5 +119,8 @@
 				<span class="text-xs italic text-muted-foreground"> Unmodified </span>
 			{/if}
 		</Card.Footer>
+	{/if}		
 	</form>
 </Card.Root>
+
+

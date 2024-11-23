@@ -43,6 +43,66 @@
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
+
+			<Form.Field {form} name="photo">
+				<Form.Control let:attrs>
+					<Form.Label>Avatar</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="URL to photo"
+						required
+						bind:value={$formData.photo}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Field {form} name="description">
+				<Form.Control let:attrs>
+					<Form.Label>About Me</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Say something about yourself"
+						required
+						bind:value={$formData.description}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Field {form} name="region">
+				<Form.Control let:attrs>
+					<Form.Label>Region</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Region"
+						required
+						bind:value={$formData.region}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+			<Form.Field {form} name="city">
+				<Form.Control let:attrs>
+					<Form.Label>City</Form.Label>
+					<Input
+						{...attrs}
+						type="name"
+						placeholder="Manila"
+						required
+						bind:value={$formData.city}
+					/>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+
+<!-- palm_left, palm_right -->
+
+
 		</Card.Content>
 		<Card.Footer class="flex gap-2">
 			<Form.Button disabled={$submitting || !$tainted}>

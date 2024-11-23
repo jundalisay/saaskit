@@ -16,8 +16,10 @@
 
 <h2 class="text-xl font-semibold">Profile</h2>
 
-<EmailForm data={data.emailForm} user={data.user} />
 <InfoForm data={data.infoForm} />
+
+<EmailForm data={data.emailForm} user={data.user} />
+
 
 
 
@@ -28,6 +30,7 @@
 			Permanently delete your account. This action is irreversible.
 		</Card.Description>
 	</Card.Header>
+
 	<Card.Content>
 		{#if data.deleteAccountForm}
 			<Dialog.Root>

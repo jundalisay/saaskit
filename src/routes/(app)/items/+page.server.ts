@@ -39,3 +39,10 @@ export const load: PageServerData = async ({ locals, url }) => {
 	console.log('Page Server Ts items index: ', data);
 };
 
+
+
+export const actions: Actions = {default: async (event) => {
+	console.log('001');
+
+}};
+

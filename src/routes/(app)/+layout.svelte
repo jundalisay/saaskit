@@ -100,7 +100,7 @@
 			class="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
-				<Sheet.Trigger asChild let:builder>
+<!-- 				<Sheet.Trigger asChild let:builder>
 					<Button
 						builders={[builder]}
 						size="icon"
@@ -110,7 +110,7 @@
 						<PanelLeft class="h-5 w-5" />
 						<span class="sr-only">Toggle Menu</span>
 					</Button>
-				</Sheet.Trigger>
+				</Sheet.Trigger> -->
 				<Sheet.Content side="left" class="sm:max-w-xs">
 					<nav class="grid gap-6 text-lg font-medium">
 						<a

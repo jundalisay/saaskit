@@ -15,6 +15,14 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const { data } = await locals.supabase.from('posts').select('*');
 	// return { bunch: bunch };
 
+    const userId = user.id;
+    console.log("user id:", userId);
+
+    // const { posts } = await supabase
+    //   .from('users')
+    //   .select('*, posts(*)')
+    //   .eq('id', userId)
+    //   .single();
 
 // const { data } = await locals.supabase
 //   .from('posts')
@@ -28,8 +36,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 //   console.error('Error fetching posts:', error);
 //   return;
 // }
-
-
 
 // const { data } = await locals.supabase
 //       .from('posts')
@@ -139,7 +145,6 @@ export const actions: Actions = {
 
 //     if (!newPost) return;
 
-// 	console.log("clicked!");
     // let { data, error } = await supabase
     //   .from('posts')
     //   .insert([{ content: newPost }]);

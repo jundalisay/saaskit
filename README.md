@@ -104,6 +104,7 @@ Migrate DB:
 npx supabase db reset
 ```
 
+
 #### Production
 
 ```sh
@@ -154,26 +155,9 @@ If you prefer another host you can explore alternatives:
   - [ ] Add API endpoints and database tables as needed to deliver your SaaS product.
 
 
-updateProfile: async (event) => {
-    const { safeGetSession, supabase } = event.locals;
-    const { session, user } = await safeGetSession();
-    if (!session || !user?.id) {
-      return redirect(303, '/login');
-    }
 
 
-
-  // Function to filter items based on the search query
-  const filteredProducts = () => {
-    return items.filter(item =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    ).sort((a, b) => {
-      if (sortOption === 'priceAsc') {
-        return a.price - b.price;
-      } else if (sortOption === 'priceDesc') {
-        return b.price - a.price;
-      } else {
-        return a.title.localeCompare(b.title); // Sort by title alphabetically
-      }
-    });
-  };
+  let { data, error } = await supabase.auth.signUp({
+    email: 'someone@email.com',
+    password: 'dxZdjgbrlDAXpdNTBdxY'
+  })

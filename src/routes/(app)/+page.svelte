@@ -4,9 +4,15 @@
 
   export let data;
   // const getProfile = (event) => {
-  const getProfile = (event) => {  
-    // addToCart(event.detail);
-  };
+  // async function getProfile(locals) {
+  //   console.log("asdf");
+  //   const { profiles } = await locals.supabase.from('profiles').select('*');
+  //   console.log("profiles:", profiles);
+  // }
+
+  // async function getProfile = (event) => {  
+  //   // addToCart(event.detail);
+  // };
 
 </script>
 
@@ -26,12 +32,11 @@
         <!-- {post} -->
 
    <div class="flex items-start px-4 py-6">
-      <img class="w-12 h-12 rounded-full object-cover mr-4 shadow" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="avatar">
+      <img class="w-12 h-12 rounded-full object-cover mr-4 shadow" src="/logos/pp.png" alt="avatar">
       <div class="">
          <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold text-gray-900 -mt-1">{getProfile(post.user_id)}</h2>
-
-
+            <h2 class="text-lg font-semibold text-gray-900 -mt-1"></h2>
+            <!-- {getProfile(post.user_id)} -->
          </div>
         <small class="text-gray-500">{new Date(post.created_at).toLocaleString()}</small>
          <p class="mt-3 text-gray-700 text-sm">
@@ -54,7 +59,9 @@
                <svg fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-1" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                 </svg>
-               <span>share</span>
+               <span class="pr-5">share</span>
+               X
+               <span class="px-2">Delete</span>
             </div>
          </div>
       </div>
@@ -107,3 +114,49 @@
 </div>
 
  -->
+
+
+<!-- 
+const me = async (_parent: any, _params: any, context: Context): Promise<MePayload> => {
+  try {
+    const { data: sessionUser, error: sessionError } = await supabase.auth.getUser(context.token.replace('Bearer ', ''));
+    console.log({ sessionUser });
+    console.log({ sessionError });
+
+    if (!sessionUser.user || sessionError) {
+      return {
+        ...userError({ message: 'Must be logged in', path: 'me resolver' }),
+      };
+    }
+
+    const userId = sessionUser.user?.id;
+    const { data: user, error: error } = await supabase
+      .from('users')
+      .select('*, notifications(*)')
+      .eq('id', userId)
+      .single();
+
+    console.log({ user });
+    console.log({ error });
+
+    if (!user || error) {
+      return {
+        ...userError({ message: 'Unable to fetch currentUser', path: 'me resolver' }),
+      };
+    }
+
+    return {
+      user,
+      errors: null,
+    };
+  } catch (err) {
+    return {
+      ...userError({ message: 'Error running me resolver', path: 'me resolver' }),
+      notifications: [],
+      onboardingSteps: [],
+    };
+  }
+
+};
+
+export default me; -->

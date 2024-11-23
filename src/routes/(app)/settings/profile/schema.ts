@@ -10,6 +10,12 @@ export type EmailFormSchema = typeof emailFormSchema;
 
 export const infoFormSchema = z.object({
 	name: z.string().trim().nullable(),
+	photo: z.string().trim(),
+	description: z.string().trim(),
+	region: z.string().trim(),
+	city: z.string().trim(),
+	palm_left: z.string().trim(),
+	palm_right: z.string().trim(),	
 });
 
 export type InfoFormSchema = typeof infoFormSchema;
