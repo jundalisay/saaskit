@@ -11,16 +11,12 @@
   <title>New Org</title>
 </svelte:head>
 
-<div class="container md:w-[800px] px-8 mx-auto"> 
 
-  <Card.Root class="mx-auto">
-    <Card.Header>
 
-    </Card.Header>
-    <Card.Content class="flex flex-col gap-4">
-      <OrgForm data={data.form} />
-    </Card.Content>
-  </Card.Root>
+<div class="p-4 max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-4">Create New Org</h1>
+
+  <OrgForm data={data.form} />
   
 </div>
 

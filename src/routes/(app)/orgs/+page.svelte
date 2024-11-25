@@ -4,13 +4,16 @@
   import { goto } from '$app/navigation';
 
   // expose session data?
-  export let data: PageServerData;
-  export let q: string = "";
+  export let data;
+  // export let user;
+  // : PageServerData;
+  // export let q: string = "";
 
   let error = '';
   let sortOption = '';
 
-  console.log('Page Svelte Orgs: ', data.orgs);
+  console.log('Page Svelte Orgs: ', data.data);
+  console.log('Page Svelte Data USER ID: ', data.user.id);
 
   // Function to sort items based on selected option
   const sortItems = () => {
@@ -27,9 +30,6 @@
     sortItems();
   };
 
-  // const goToDetails = (id) => {
-  //   goto(`/orgs/${id}`);
-  // };
 </script>
 
 
@@ -43,7 +43,7 @@
 
 <div class="flex items-center justify-between p-4">
   <h1 class="text-2xl font-bold">Orgs</h1>
-  <button on:click={() => goto('/orgs/new')}  class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Add
+  <button on:click={() => goto('/orgs/new')}  class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">New
   </button>
 </div>
 
@@ -73,9 +73,9 @@
   <!-- on:add-to-cart={handleAddToCart}  -->
 <!-- filteredProducts() -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#if data.orgs}
-      {#each data.orgs as item}
-        <OrgCard {item} />
+    {#if data.data}
+      {#each data.data as item}
+        <OrgCard {item} user_id={data.user.id} />
       {/each}
     {:else}
     {/if}

@@ -1,4 +1,8 @@
 <script lang="ts">
+  import Button from '$lib/components/ui/button/button.svelte';
+  import Trash from '~icons/lucide/trash-2';
+  import Pen from '~icons/lucide/pen';
+
   export let item = {
     id: '',
     owner: '',
@@ -15,6 +19,11 @@
     url4: '',
     url5: '',            
   };
+
+  export let user_id;
+
+  console.log('Page Svelte user_id: ', user_id);
+
 </script>
 
 
@@ -32,6 +41,7 @@
 
 
 <div class="bg-card border rounded-lg shadow-md p-6">
+
   <div class="flex items-center mb-4">
     <img src={item.logo} alt="{item.name} Logo" class="w-16 h-16 rounded-full mr-4" />
     <div>
@@ -100,7 +110,33 @@
       </a>
     {/if}
   </div>
+
+
+
+
+
+  {#if item.user_id == user_id}
+    <!-- data.org?.id  builders={[builder]} -->
+    <div class="flex justify-center gap-2 px-2">
+          <Button
+            class="flex flex-nowrap items-center gap-2 shadow"
+            >
+            <Pen class="h-4 w-4" />
+            Edit
+          </Button>
+
+          <Button
+            variant="destructive"
+            class="flex flex-nowrap items-center gap-2 shadow"
+            >
+            <Trash class="h-4 w-4" />
+            Delete
+          </Button>
 </div>
+  {/if}  
+</div>
+
+
 
 <!-- fb
 <svg fill="#5e5c64" width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M22,3V21a1,1,0,0,1-1,1H15.8V14.255h2.6l.39-3.018H15.8V9.309c0-.874.242-1.469,1.5-1.469h1.6V5.14a21.311,21.311,0,0,0-2.329-.119A3.636,3.636,0,0,0,12.683,9.01v2.227H10.076v3.018h2.607V22H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H21A1,1,0,0,1,22,3Z"></path></g></svg> 

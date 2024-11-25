@@ -30,26 +30,24 @@ export const actions: Actions = {
 
 		console.log('004');
 
-		const { name } = form.data;
+		const { name, description, phone, mobile, address, city, region, email, logo, url1, url2 } = form.data;
 
-		console.log('005 Content:', name);
+		console.log('005 Content:', description);
 
-		const insert = supabaseServiceRole.from('orgs').insert({
+		const { error } = supabaseServiceRole.from('orgs').insert({
 			owner_id: user.id,
 			user_id: user.id,
-			name: name,
+			name, description, phone, mobile, address, city, region, email, logo, url1, url2,
 			created_at: new Date(),
 		});
 
-		let error: PostgrestError | null = null;
+		// let error: PostgrestError | null = null;
 		
-		try {
-			[/*result,*/ { error }] = await Promise.all([/*send, */ insert]);
-		} catch (e) {
-			console.warn("Couldn't post.", e);
-			if (!error) {console.info(`Success!`,);}
+		if (error) {
+			console.error(error);
+			return setError(form, '', 'Could not sign up. Please try again.');
 		}
-		// return message(form);
-		return redirect(303, '/orgs');
+
+		redirect(303, '/orgs');			
 	},
 };

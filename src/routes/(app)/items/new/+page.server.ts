@@ -1,110 +1,66 @@
-import type { PageServerData } from './$types';
-import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 import type { PostgrestError } from '@supabase/supabase-js';
-import { fail, redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
-
-import { message, setError, superValidate } from 'sveltekit-superforms';
+import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
+import { message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import {formSchema} from './schema';
+import { itemformSchema } from './schema';
 
 
 export const load: PageServerLoad = async ({ locals }) => {
-	const { user } = await locals.safeGetSession();
-	// get profile name into `info``
-	// let info;
-	// if (user) {
-	// 	const { data, error } = await locals.supabase
-	// 		.from('profiles')
-	// 		.select('name')
-	// 		.eq('id', user.id)
-	// 		.single();
-	// 	if (error) {
-	// 		console.error('Error getting profile info:', error.message);
-	// 		throw fail(500, { error: 'Could not get profile info.' });
-	// 	}
-	// 	info = data;
-	// }
 
-	// console.log("profile data:", data);
-	// console.log("profile data:", data.info);	
-	// let name = '';
-	// let description = '';
-	// let points = 0;
-	// let price = 0;
-	// let location = '';
-	// let photoUrls = ['', '', '', '']; // Array to hold up to 4 photo URLs
-	// let errorMessage = '';
+	return {form: await superValidate(zod(itemformSchema)),};
 
-	// const createItem = async () => {
-
-
-	// 	// Validate the input
-	// 	if (!name || !description || !location || photoUrls.every(url => !url)) {
-	// 	  errorMessage = 'Please fill in all required fields and provide at least one photo URL.';
-	// 	  return;
-	// 	}
-
-	return {form: await superValidate(zod(formSchema)),};	
 };
 
 
-// export const actions = { default: async (event) => {
+export const actions: Actions = {
+	default: async (event) => {
 
-export const actions: Actions = {default: async (event) => {
-	console.log('001');
+		console.log('001');
 
-	// check if logged in
-	const { safeGetSession, supabase } = event.locals;
-	const { session } = await safeGetSession();
-	if (!session) {
-		redirect(303, '/login');
-	}
+		const { user } = await event.locals.safeGetSession();
 
-	console.log('002');
+		console.log('002');
 
-	const { user } = await event.locals.safeGetSession();
+		const supabaseServiceRole = event.locals.supabaseServiceRole;
+		
+		console.log('003');
 
-	const form = await superValidate(event, zod(formSchema));
-	// if (!form.valid) {return fail(400, {emailForm: form,});}
+		const form = await superValidate(event, zod(itemformSchema));
+		if (!form.valid) {return fail(400, {form,});}
 
-	const { details } = form.data;
+		console.log('004');
 
-	console.log('005 Details:', details);
+		const { name, description, points} = form.data;
 
-	const supabaseServiceRole = event.locals.supabaseServiceRole;
-
-	// let name = '';
-	// let description = '';
-	// let points = 0;
-	// let price = 0;
-	// let location = '';
-	// let photoUrls = ['', '', '', '']; // Array to hold up to 4 photo URLs
-	// let errorMessage = '';
+// " decimal,
+//   "price" decimal,
+//   "region" text,
+//   "city" text,
+//   "photo" text,
+//   "photo1" text,
+//   "photo2" text,
+//   "photo3" text,
 
 
-	const insert = supabaseServiceRole.from('items').insert({
-	  user_id: user.id,
-	  updated_at: new Date(),
-	  name: name,
-	  description: description,
-	  points: points,
-	  price: price,
-	  location: location,
-	  photo: photoUrls[0],
-	  photo1: photoUrls[1],
-	  photo2: photoUrls[2],
-	  photo3: photoUrls[3],
-	});
+		console.log('005 Content:', name);
 
-	let error: PostgrestError | null = null;
+		const insert = supabaseServiceRole.from('orgs').insert({
+			owner_id: user.id,
+			user_id: user.id,
+			name: name,
+			created_at: new Date(),
+		});
 
-	if (error) {
-		console.error(error);
-		return setError(form, '', 'Could not save.');
-	} else {
-		redirect(302, `/items/${item.id}`);
-	}
-	return message(form, {success: 'Created.',});
-
-}};
-
+		let error: PostgrestError | null = null;
+		
+		try {
+			[/*result,*/ { error }] = await Promise.all([/*send, */ insert]);
+		} catch (e) {
+			console.warn("Couldn't post.", e);
+			if (!error) {console.info(`Success!`,);}
+		}
+		// return message(form);
+		return redirect(303, '/orgs');
+	},
+};
