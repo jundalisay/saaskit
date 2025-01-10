@@ -6,10 +6,6 @@ import type { PageServerData } from "./$types";
 let transactionId;
 let transactionDetails;
 
-// import { message, superValidate } from 'sveltekit-superforms';
-// import { zod } from 'sveltekit-superforms/adapters';
-// import { formSchema } from './schema'; 
-
 export const load: PageServerData = async ({ params, locals }) => {
 
 	const { id } = params;

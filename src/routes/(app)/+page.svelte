@@ -10,35 +10,6 @@
   // import { env } from '$env/dynamic/private'; 
   import Gemini from "gemini-ai";
 
-  // export let blogContent = '';
-
-  // let chatResponse = '';
-
-  // // A simple function to generate a response based on blog content
-  // function generateResponse(content) {
-  //   const responseMaxLength = 500;
-
-  //   // Use the blog content to generate a response (simulated here)
-  //   const extractedKeyPoints = content.split('\n')
-  //     .filter(line => line.trim().length > 0)
-  //     .slice(0, 3)
-  //     .join(' ');
-
-  //   let response = `Here's a summary of the post: ${extractedKeyPoints}.`;
-    
-  //   if (response.length > responseMaxLength) {
-  //     response = response.substring(0, responseMaxLength) + '...';
-  //   }
-
-  //   return response;
-  // }
-
-  // // Generate the chat response when the component is mounted
-  // import { onMount } from 'svelte';
-  // onMount(() => {
-  //   chatResponse = generateResponse(blogContent);
-  // });
-
 
 const data = [
   {
@@ -606,18 +577,3 @@ const penguinDataBySpecies = [
   }  
 </style>
 
-
-<!-- <script context="module" lang="ts">
-  export const ssr = true; // Enable SSR to render the page on the server
-
-  // Fetch blog content dynamically on the server
-  export async function load() {
-    // Your blog content - this can be fetched from an API or a markdown file
-    const blogContent = `
-      Welcome to my blog! Here, I share insights about various topics including technology, AI, and more.
-      Today, we'll be discussing the advancements in artificial intelligence and how it is shaping the future.
-      AI is transforming industries and creating new opportunities for innovation.
-    `;
-    return { props: { blogContent } };
-  }
-</script> -->

@@ -12,12 +12,8 @@ export const load: PageServerData = async ({ locals, url }) => {
 	const { data } = await locals.supabase.from('profiles').select('*');
 	// const { data } = await locals.supabase.auth.admin.listUsers()
 
-	// data in PageServerLoad is all 
 	console.log('Page Server Ts users index: ', data);
-	// console.log('Page Server Ts users: ', data.users);
 
 	return { profiles: data, q };
-	// tell the client that items means the stuff queried from the db
-	// return { users: data, q };
 };
 

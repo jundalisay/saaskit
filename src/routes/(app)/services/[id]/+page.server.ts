@@ -17,8 +17,6 @@ export const load: PageServerData = async ({ params, locals }) => {
 
 	console.log('ID: ' + id);
 
-	// let item;
-
 	// const { data, error } = await locals.supabase.from('items').select('*').eq('id', id).single();
     // if (error) {return { status: 404, error: new Error('Item not found') };}
 
@@ -68,33 +66,3 @@ export const actions: Actions = {
 		return redirect(303, '/items');
 	},
 };
-
-// export const actions: Actions = {default: async (event) => {
-
-
-// export const actions = {
-// 	handleSubmit: async (event) => {
-// 		const { safeGetSession, supabase } = event.locals;
-// 		console.log('001');
-// 	}
-// };
-
-  // const  = async () => {
-  //   const qty = $quantity;
-
-  //   if (qty <= 0) {
-  //     $errorMessage = 'Please enter a valid quantity greater than 0.';
-  //     return;
-  //   }
-
-  //   const { data, error } = await supabase
-  //     .from('transactions')
-  //     .insert([{ quantity: qty }]);
-
-  //   if (error) {
-  //     $errorMessage = 'Error creating transaction: ' + error.message;
-  //   } else {
-  //     $successMessage = `Transaction created with quantity: ${qty}`;
-  //     $quantity = 0; // Reset the input field after submission
-  //   }
-  // };

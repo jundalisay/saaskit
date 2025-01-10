@@ -1,9 +1,6 @@
 import type { PageServerData } from './$types';
 import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
-// import { message, superValidate } from 'sveltekit-superforms';
-// import { zod } from 'sveltekit-superforms/adapters';
-// import { formSchema } from './schema';
 
 
 export const load: PageServerData = async ({ locals, url }) => {
