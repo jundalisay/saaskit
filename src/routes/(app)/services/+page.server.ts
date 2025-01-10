@@ -10,9 +10,9 @@ export const load: PageServerData = async ({ locals, url }) => {
 	const { user } = await locals.safeGetSession();
 
 	const q = String(url.searchParams.get('q')).trim();
-	const { data } = await locals.supabase.from('items').select('*');
+	const { data } = await locals.supabase.from('services').select('*');
 
-	return { items: data, q };
+	return { services: data, q };
 
 	console.log('Page Server Ts items index: ', data);
 };

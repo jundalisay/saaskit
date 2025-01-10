@@ -24,10 +24,15 @@
         <div class="mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
             <div class="border-b px-4 pb-6">
                 <div class="text-center my-4">
-                    <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
+
+                    {#if data.profile.photo}                    
+                        <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
                         src={data.profile.photo} alt="">
+                    {/if}                                            
                     <div class="py-2">
+                    {#if data.profile.name}                                            
                         <h1 class="font-bold text-2xl text-gray-800 dark:text-white mb-1">{data.profile.name}</h1>
+                    {/if}                                                                    
                         <div class="inline-flex text-gray-700 dark:text-gray-300 items-center">
                             <svg class="h-5 w-5 text-gray-400 dark:text-gray-600 mr-1" fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">

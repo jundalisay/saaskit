@@ -3,6 +3,11 @@
   import Trash from '~icons/lucide/trash-2';
   import Pen from '~icons/lucide/pen';
 
+  import { Modal, Label, Input, Checkbox } from 'flowbite-svelte';
+  import OrgForm from '$lib/components/forms/org.svelte';
+
+  // let { modalname = formModal + item.id } = false;
+  export let data;  
   export let item = {
     id: '',
     owner: '',
@@ -15,7 +20,7 @@
     email: '',    
     url1: '',
     url2: '',
-    url3: '',    
+    url3: '',
     url4: '',
     url5: '',            
   };
@@ -39,6 +44,29 @@
   </div>
 </div> -->
 
+<!-- <Modal bind:open={modalnamez} size="xs" autoclose={false} class="container md:w-[800px] px-8 mx-auto">
+  <OrgForm data={data.form} /> -->
+<!--   <form class="flex flex-col space-y-6" action="#">
+    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
+    <Label class="space-y-2">
+      <span>Email</span>
+      <Input type="email" name="email" placeholder="name@company.com" required />
+    </Label>
+    <Label class="space-y-2">
+      <span>Your password</span>
+      <Input type="password" name="password" placeholder="•••••" required />
+    </Label>
+    <div class="flex items-start">
+      <Checkbox>Remember me</Checkbox>
+      <a href="/" class="ms-auto text-sm text-primary-700 hover:underline dark:text-primary-500"> Lost password? </a>
+    </div>
+    <Button type="submit" class="w-full1">Login to your account</Button>
+    <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+      Not registered? <a href="/" class="text-primary-700 hover:underline dark:text-primary-500"> Create account </a>
+    </div>
+  </form> -->
+<!-- </Modal> -->
+
 
 <div class="bg-card border rounded-lg shadow-md p-6">
 
@@ -57,8 +85,7 @@
     <p class="text-gray-700 mb-4">{item.description}</p>
   {/if}
 
-
-  <div class="flex items-center">
+  <div class="flex items-center gap-2 px-2">
 
     {#if item.phone}
       <div class="mr-2">
@@ -113,26 +140,21 @@
 
 
 
-
+<hr class="my-4">
 
   {#if item.user_id == user_id}
-    <!-- data.org?.id  builders={[builder]} -->
+    <!-- data.org?.id  builders={[builder]} on:click={() => (modalname = true)} -->
     <div class="flex justify-center gap-2 px-2">
-          <Button
-            class="flex flex-nowrap items-center gap-2 shadow"
-            >
-            <Pen class="h-4 w-4" />
-            Edit
-          </Button>
+      <Button class="flex flex-nowrap items-center gap-2 shadow">
+        <Pen class="h-4 w-4" />
+        Edit
+      </Button>
 
-          <Button
-            variant="destructive"
-            class="flex flex-nowrap items-center gap-2 shadow"
-            >
-            <Trash class="h-4 w-4" />
-            Delete
-          </Button>
-</div>
+      <Button variant="destructive" class="flex flex-nowrap items-center gap-2 shadow">
+        <Trash class="h-4 w-4" />
+        Delete
+      </Button>
+    </div>
   {/if}  
 </div>
 

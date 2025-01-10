@@ -2,6 +2,10 @@
   import type { PageServerData } from './$types';
   import OrgCard from '$lib/components/ui/card/org.svelte';
   import { goto } from '$app/navigation';
+  // import { AlertDialog as AlertDialogPrimitive } from 'bits-ui';
+  import Button from '$lib/components/ui/button/button.svelte';
+  import Cross from '~icons/lucide/cross';
+
 
   // expose session data?
   export let data;
@@ -12,8 +16,8 @@
   let error = '';
   let sortOption = '';
 
-  console.log('Page Svelte Orgs: ', data.data);
-  console.log('Page Svelte Data USER ID: ', data.user.id);
+  console.log('Page Svelte Orgs Index: ', data.data);
+  console.log('Page Svelte Orgs Index USER ID: ', data.user.id);
 
   // Function to sort items based on selected option
   const sortItems = () => {
@@ -37,15 +41,18 @@
   <title>Orgs</title>
 </svelte:head>
 
+
 <!-- bind:value={sortOption} -->
 <div class="px-4">
 
-
-<div class="flex items-center justify-between p-4">
-  <h1 class="text-2xl font-bold">Orgs</h1>
-  <button on:click={() => goto('/orgs/new')}  class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">New
-  </button>
-</div>
+  <div class="flex items-center justify-between p-4">
+    <h1 class="text-2xl font-bold">Orgs</h1>
+    <Button on:click={()=> goto('/orgs/new')} class="flex flex-nowrap items-center gap-2">
+      <Cross class="h-4 w-4" /> Add
+    </Button>
+    <!-- <button class="btn btn-primary" on:click={() => editItem(null)}>New</button> -->
+    <!-- <button class="btn btn-secondary" on:click={() => editItem(selectedItem)}>Edit</button> -->
+  </div>
 
 
   <div class="mx-auto px-5 grid justify-items-between mb-6">
@@ -81,6 +88,30 @@
     {/if}
   </div>
 
+
+<!-- <AlertDialogPrimitive.Action
+  class={cn(buttonVariants(), className)}
+  {...$$restProps}
+  on:click
+  on:keydown
+  let:builder
+>
+  <slot {builder} />
+</AlertDialogPrimitive.Action>
+
+
+  <AlertDialog bind:this={dialog} class="modal">
+    <form on:submit|preventDefault={handleSubmit} class="modal-box">
+      <h2 class="text-lg font-bold mb-4">Edit Org</h2>
+      <label for="name" class="block mb-2">Name:</label>
+      <input type="text" id="name" name="name" bind:value={selectedItem?.name} class="input input-bordered w-full mb-4" required />
+
+      <div class="modal-action">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn" on:click={() => dialog.close()}>Cancel</button>
+      </div>
+    </form>
+  </dialog> -->
 </div>
 
 

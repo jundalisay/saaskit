@@ -6,7 +6,7 @@
 	import {superForm, type Infer, type SuperValidated, } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
-	import { itemformSchema, type ItemFormSchema } from '$lib/schemas/item';
+	import { itemformSchema, type ItemFormSchema } from './schema';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: SuperValidated<Infer<ItemFormSchema>>;
@@ -64,31 +64,28 @@
 			</Form.Field>
 
 <!-- min="1" -->
-			<Form.Field {form} name="points">
+<!-- 			<Form.Field {form} name="points">
 				<Form.Control let:attrs>
 					<Form.Label>Points</Form.Label>
 					<Input
 						{...attrs}
 						required
-					    type="number"
-					    id="decimalInput"
-					    min="0"
-					    step="0.1"
-					    placeholder="0.0"
+						type="number"
+						min="0.1"
 						bind:value={$formData.points}
 					/>
 				</Form.Control>
 				<Form.FieldErrors />
-			</Form.Field>
+			</Form.Field> -->
 
-			<Form.Field {form} name="city">
+			<Form.Field {form} name="location">
 				<Form.Control let:attrs>
-					<Form.Label>City</Form.Label>
+					<Form.Label>Location</Form.Label>
 					<Input
 						{...attrs}
 						type="text"
 						placeholder="Manila"
-						bind:value={$formData.city}
+						bind:value={$formData.location}
 					/>
 				</Form.Control>
 				<Form.FieldErrors />
@@ -127,8 +124,37 @@
 			{/if}
 		</Card.Footer>
 	{/if}		
-
-	<button type="submit" class="btn btn-primary">Save</button>
-	
 	</form>
 </Card.Root>
+
+
+<!-- 
+<form method="POST" use:enhance class="grid gap-4">
+	{#if $message?.success}
+		<p class="text-sm text-green-700">{$message.success}</p>
+	{:else}
+		<Form.Errors {form} />
+
+		<Form.Field {form} name="content">
+			<Form.Control let:attrs>
+				<Textarea
+					rows={10}
+					{...attrs}
+					placeholder="Write a post"
+					bind:value={$formData.content}
+				/>
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
+		<Form.Button class="w-full" disabled={$submitting}>
+			{#if $submitting}
+				<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
+				Posting...
+			{:else}
+				Post
+			{/if}
+		</Form.Button>
+	{/if}
+</form>
+
+ -->

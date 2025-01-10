@@ -1,9 +1,14 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
+
 /** @type {import('tailwindcss').Config} */
 const config = {
 	darkMode: ['class'],
-	content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: [
+		'./src/**/*.{html,svelte}',
+	    // './node_modules/svelte-ux/**/*.{svelte,js}',
+    	'./node_modules/layerchart/**/*.{svelte,js,ts}' // <--- Add this		
+	],
 	safelist: ['dark'],
 	theme: {
 		container: {

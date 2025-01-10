@@ -2,24 +2,28 @@
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
-	import { Textarea } from '$lib/components/ui/textarea';
 	import {superForm, type Infer, type SuperValidated, } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
 	import { itemformSchema, type ItemFormSchema } from '$lib/schemas/item';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	export let data: SuperValidated<Infer<ItemFormSchema>>;
-	
-	const form = superForm(data, {validators: zodClient(itemformSchema),});
-	
-	const { form: formData, enhance, submitting, message, tainted } = form;
+
+	const form = superForm(data, {
+		validators: zodClient(itemformSchema),
+		resetForm: false,
+	});
+
+	const { form: formData, enhance, submitting, tainted, message } = form;
+
+	console.log("Page Server Svelte: loaded...");
 </script>
 
 
 
 <Card.Root>
-	<SuperDebug data={form} />
+<!-- <SuperDebug action="?/items/new" data={form} /> -->
 
 	<form method="POST" use:enhance>
 		{#if $message?.success}
@@ -64,31 +68,28 @@
 			</Form.Field>
 
 <!-- min="1" -->
-			<Form.Field {form} name="points">
+<!-- 			<Form.Field {form} name="points">
 				<Form.Control let:attrs>
 					<Form.Label>Points</Form.Label>
 					<Input
 						{...attrs}
 						required
-					    type="number"
-					    id="decimalInput"
-					    min="0"
-					    step="0.1"
-					    placeholder="0.0"
+						type="number"
+						min="0.1"
 						bind:value={$formData.points}
 					/>
 				</Form.Control>
 				<Form.FieldErrors />
-			</Form.Field>
+			</Form.Field> -->
 
-			<Form.Field {form} name="city">
+			<Form.Field {form} name="location">
 				<Form.Control let:attrs>
-					<Form.Label>City</Form.Label>
+					<Form.Label>Location</Form.Label>
 					<Input
 						{...attrs}
 						type="text"
 						placeholder="Manila"
-						bind:value={$formData.city}
+						bind:value={$formData.location}
 					/>
 				</Form.Control>
 				<Form.FieldErrors />
@@ -112,6 +113,10 @@
 		
 		<Card.Footer class="flex gap-2">
 
+
+<!--     <button on:click={()=> console.log("asdfasd")}  type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+      Create Item
+    </button>			 -->
 			<Form.Button disabled={$submitting || !$tainted}>
 				{#if $submitting}
 					<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
@@ -127,8 +132,19 @@
 			{/if}
 		</Card.Footer>
 	{/if}		
-
-	<button type="submit" class="btn btn-primary">Save</button>
-	
 	</form>
 </Card.Root>
+
+
+<!--     <div class="mb-4">
+      <label class="block">Photo URLs</label>
+      <small class="mb-4">The first URL will be the main photo</small>
+
+      {#each Array(4) as _, index}
+        <input
+          type="text"
+          placeholder={`Photo URL ${index + 1}`}
+          bind:value={photoUrls[index]}
+          class="border border-gray-300 rounded p-2 w-full mb-2"/>
+      {/each}
+    </div> -->

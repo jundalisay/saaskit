@@ -6,7 +6,7 @@
 	import {superForm, type Infer, type SuperValidated, } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
-	import { itemformSchema, type ItemFormSchema } from '$lib/schemas/item';
+	import { itemformSchema, type ItemFormSchema } from './schema';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: SuperValidated<Infer<ItemFormSchema>>;
@@ -30,7 +30,7 @@
 
 		<Card.Header>
 			<Card.Description>
-				Enter the details of your item.
+				Enter the details of your service.
 			</Card.Description>
 		</Card.Header>
 		<Card.Content>
@@ -64,22 +64,19 @@
 			</Form.Field>
 
 <!-- min="1" -->
-			<Form.Field {form} name="points">
+<!-- 			<Form.Field {form} name="points">
 				<Form.Control let:attrs>
 					<Form.Label>Points</Form.Label>
 					<Input
 						{...attrs}
 						required
-					    type="number"
-					    id="decimalInput"
-					    min="0"
-					    step="0.1"
-					    placeholder="0.0"
+						type="number"
+						min="0.1"
 						bind:value={$formData.points}
 					/>
 				</Form.Control>
 				<Form.FieldErrors />
-			</Form.Field>
+			</Form.Field> -->
 
 			<Form.Field {form} name="city">
 				<Form.Control let:attrs>

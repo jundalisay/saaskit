@@ -4,13 +4,16 @@
 	import { Input } from '$lib/components/ui/input';
 	import {superForm, type Infer, type SuperValidated, } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { orgformSchema, type OrgFormSchema } from './schema';
+	import { orgformSchema, type OrgFormSchema } from '$lib/schemas/org';
 
 	export let data: SuperValidated<Infer<OrgFormSchema>>;
 	
 	const form = superForm(data, {validators: zodClient(orgformSchema),});
 
 	const { form: formData, enhance, submitting, tainted, message } = form;
+
+
+	console.log('Page Svelte Orgs Form: ');
 </script>
 
 
@@ -51,7 +54,6 @@
 						{...attrs}
 						type="text"
 						placeholder="Describe your org"
-						required
 						bind:value={$formData.description}
 					/>
 				</Form.Control>
@@ -91,7 +93,6 @@
 						{...attrs}
 						type="text"
 						placeholder="Region 1"
-						required
 						bind:value={$formData.region}
 					/>
 				</Form.Control>
@@ -157,7 +158,6 @@
 						{...attrs}
 						type="text"
 						placeholder="www.company.com"
-						required
 						bind:value={$formData.url1}
 					/>
 				</Form.Control>
@@ -171,7 +171,6 @@
 						{...attrs}
 						type="text"
 						placeholder="facebook.com/company"
-						required
 						bind:value={$formData.url2}
 					/>
 				</Form.Control>

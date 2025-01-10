@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Apple from '~icons/lucide/apple';
-	import Award from '~icons/lucide/award';	
+	import Award from '~icons/lucide/award';
+	import BaggageClaim from '~icons/lucide/baggage-claim';		
 	import Home from '~icons/lucide/home';
 	import List from '~icons/lucide/list';	
 	import Org from '~icons/lucide/building';
@@ -36,6 +37,16 @@
 					</NavLink>
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Items</Tooltip.Content>
+			</Tooltip.Root>
+
+			<Tooltip.Root>
+				<Tooltip.Trigger asChild let:builder>
+					<NavLink href="/services" class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClass="bg-accent text-accent-foreground" {builder} >
+						<BaggageClaim class="h-5 w-5" />
+						<span class="sr-only">Services</span>
+					</NavLink>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="right">Services</Tooltip.Content>
 			</Tooltip.Root>
 
 

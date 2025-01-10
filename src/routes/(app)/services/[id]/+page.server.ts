@@ -2,11 +2,13 @@ import type { PageServerData } from './$types';
 import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
 import type { PageServerData } from "./$types";
+import { redirect } from '@sveltejs/kit';
+
+import { message, superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { itemformSchema } from '$lib/schemas/item';
 
 
-// import { message, superValidate } from 'sveltekit-superforms';
-// import { zod } from 'sveltekit-superforms/adapters';
-// import { formSchema } from './schema';
 
 export const load: PageServerData = async ({ params, locals }) => {
 
@@ -20,30 +22,17 @@ export const load: PageServerData = async ({ params, locals }) => {
 	// const { data, error } = await locals.supabase.from('items').select('*').eq('id', id).single();
     // if (error) {return { status: 404, error: new Error('Item not found') };}
 
-	const { data } = await locals.supabase.from('items').select('*').eq('id', id).single();    
+	const { data } = await locals.supabase.from('services').select('*').eq('id', id).single();    
 
 	console.log('Page Server Ts item show: ', data);
 	
 	return { item: data };
-
-	// console.log('Product user: ' + data.user_id);	
-	// console.log('User: ' + user.email);	
-
-    // return { item: { name: data.name, id: data.id } } // Return the fetched item as props
-
-	// item = data;
-
-	// console.log('Page.Server.Ts: ' + data.name);
-
-	// return { item: { name: data.name }};
 };
 
 
 
 export const actions: Actions = {
 	default: async (event) => {
-
-		console.log('1. Loading Items New Server..');
 
 		const { user } = await event.locals.safeGetSession();
 

@@ -49,19 +49,21 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions = {
 	updateEmail: async (event) => {
+
+		// load session data?
 		const { safeGetSession, supabase } = event.locals;
 		const { session } = await safeGetSession();
 		if (!session) {
 			redirect(303, '/login');
 		}
 
+		// compare form to schema as validation
 		const form = await superValidate(event, zod(emailFormSchema));
 		if (!form.valid) {
-			return fail(400, {
-				emailForm: form,
-			});
+			return fail(400, {emailForm: form,});
 		}
 
+		// parse data into vars 
 		const { email } = form.data;
 
 		// Supabase does not change the email until the user verifies both
@@ -79,19 +81,20 @@ export const actions = {
 		});
 	},
 	updateProfile: async (event) => {
+
+		// load session data?		
 		const { safeGetSession, supabase } = event.locals;
 		const { session, user } = await safeGetSession();
 		if (!session || !user?.id) {
 			return redirect(303, '/login');
 		}
 
+		// compare form to schema as validation
 		const form = await superValidate(event, zod(infoFormSchema));
 		if (!form.valid) {return fail(400, {infoForm: form, }); }
 
+		// parse data into vars 
 		const {name, photo, description, region, city, palm_left, palm_right} = form.data;
-
-  // "blood" text,    
-  // "disability" text, 
 
 		const { error } = await supabase.from('profiles').upsert({
 			id: user.id,

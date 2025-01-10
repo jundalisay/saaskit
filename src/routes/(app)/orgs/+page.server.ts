@@ -19,21 +19,50 @@ export const load: PageServerData = async ({ locals, url }) => {
 
 
 export const actions: Actions = {
+
+  // let data = { data: [], user: { id: 'user-id' } }; // Replace with actual user data
+  // let dialog;
+  // let selectedItem = null;
+  
 	del: async (event) => {
 		const { safeGetSession, supabase, supabaseServiceRole } = event.locals;
 
 		const { session, user } = await safeGetSession();
 		
-		if (!session || !user?.id) {return redirect(303, '/login');}
+		// if (!session || !user?.id) {return redirect(303, '/login');}
+		// const form = await superValidate(event, zod(deleteAccountFormSchema));
+		// if (!form.valid) {return fail(400, {deleteAccountForm: form, }); }
 
-		const form = await superValidate(event, zod(deleteAccountFormSchema));
-		if (!form.valid) {return fail(400, {deleteAccountForm: form, }); }
-
-		const { id } = form.data;
-
-		const insert = supabaseServiceRole.from('orgs').delete().eq('id', id);
-
-		redirect(303, '/register?alertDialog=account-deletion');
+		// const { id } = form.data;
+		// const insert = supabaseServiceRole.from('orgs').delete().eq('id', id);
+		// redirect(303, '/register?alertDialog=account-deletion');
 	},
+
+	editItem: async (item) => {
+    selectedItem = item;
+    dialog.showModal();
+  }
+
+	// handleSubmit(event) {
+  //   const formData = new FormData(event.target);
+  //   const updatedItem = {
+  //     id: selectedItem.id,
+  //     name: formData.get('name'),
+  //     // Add other fields as necessary
+  //   };
+
+  //   const { error } = await supabase
+  //     .from('orgs')
+  //     .update(updatedItem)
+  //     .eq('id', selectedItem.id);
+
+  //   if (error) {
+  //     console.error('Error updating item:', error);
+  //   } else {
+  //     // Refresh the data or update it in state
+  //     data.data = data.data.map(org => (org.id === selectedItem.id ? updatedItem : org));
+  //     dialog.close();
+  //   }
+  // }
 
 };

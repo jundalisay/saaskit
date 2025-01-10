@@ -3,7 +3,7 @@ import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { itemformSchema, type ItemFormSchema } from '$lib/schemas/item';
+import { itemformSchema, type ItemFormSchema } from './schema';
 
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -34,8 +34,11 @@ export const actions = {
 		// parse data into vars 
 		const { name, description, points, city, photo } = form.data;
 
-		// const insert = supabaseServiceRole.from('items').insert({
-		const { data, error } =  await supabase.from('items').insert({			
+
+		// const supabaseServiceRole = event.locals.supabaseServiceRole;
+
+		// const insert = supabaseServiceRole.from('services').insert({
+		const { data, error } =  await supabase.from('services').insert({			
 			user_id: user.id,
 			name, description, points, city, photo, 
 			created_at: new Date(),
@@ -46,7 +49,7 @@ export const actions = {
 			return setError(form, '', 'Could not update info. Please try again.');
 		}
 
-		return redirect(303, '/items');
+		return redirect(303, '/services');
 
 	},
 };

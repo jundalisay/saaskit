@@ -63,6 +63,24 @@ create table items (
 );
 -- alter table items enable row level security;
 
+create table services (
+  id serial not null primary key,    
+  user_id uuid references auth.users on delete cascade not null,    
+  "name" text not null, 
+  "description" text,
+  "points" decimal,
+  "price" decimal,
+  "region" text,
+  "city" text,
+  "photo" text,
+  "photo1" text,
+  "photo2" text,
+  "photo3" text,      
+  created_at timestamp with time zone not null default now(),
+  updated_at timestamp with time zone null
+);
+
+
 create table orgs (
   id serial not null primary key,    
   user_id uuid references auth.users on delete cascade not null,    

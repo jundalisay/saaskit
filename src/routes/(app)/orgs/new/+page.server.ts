@@ -3,7 +3,8 @@ import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { orgformSchema } from './schema';
+//import { orgformSchema } from '$lib/schemas/org';
+import { orgformSchema, type OrgFormSchema } from './schema';
 
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -15,39 +16,47 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
 	default: async (event) => {
-		console.log('001');
+
+		console.log('1: Starting Action..');
 
 		const { user } = await event.locals.safeGetSession();
 
-		console.log('002');
+		console.log('2: Service Role..');
 
 		const supabaseServiceRole = event.locals.supabaseServiceRole;
 		
-		console.log('003');
+		console.log('3: form..');
 
 		const form = await superValidate(event, zod(orgformSchema));
 		if (!form.valid) {return fail(400, {form,});}
 
-		console.log('004');
+		console.log('4: form data..');
 
-		const { name, description, phone, mobile, address, city, region, email, logo, url1, url2 } = form.data;
+		const { name, description, address, city, region, mobile, phone, logo, url1, url2 } = form.data;
 
-		console.log('005 Content:', description);
+		console.log('5: Content:', form.data);
 
-		const { error } = supabaseServiceRole.from('orgs').insert({
+		const thingtobeinserted = supabaseServiceRole.from('orgs').insert({
 			owner_id: user.id,
 			user_id: user.id,
-			name, description, phone, mobile, address, city, region, email, logo, url1, url2,
+			name, description, address, city, region, mobile, phone, logo, url1, url2,
 			created_at: new Date(),
 		});
 
-		// let error: PostgrestError | null = null;
+		let error: PostgrestError | null = null;
 		
-		if (error) {
-			console.error(error);
-			return setError(form, '', 'Could not sign up. Please try again.');
+		try {
+			[/*result,*/ { error }] = await Promise.all([/*send, */ thingtobeinserted]);
+		} catch (e) {
+			console.warn("Couldn't insert.", e);
+			if (!error) {console.info(`Success!`,);}
 		}
+		return redirect(303, '/orgs');		
+		// if (error) {
+		// 	console.error(error);
+		// 	return setError(form, '', 'Could not sign up. Please try again.');
+		// }
+		// redirect('/orgs');
 
-		redirect(303, '/orgs');			
 	},
 };

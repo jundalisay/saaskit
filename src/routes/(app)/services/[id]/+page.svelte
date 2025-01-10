@@ -24,27 +24,6 @@
     addToCart(event.detail);
   };
 
-
-  // const handleSubmit = async () => {
-  //   const qty = $quantity;
-
-  //   if (qty <= 0) {
-  //     $errorMessage = 'Please enter a valid quantity greater than 0.';
-  //     return;
-  //   }
-
-  //   const { data } = await locals.supabase.from('transactions').insert([{ quantity: qty }]);
-
-
-  //   if (error) {
-  //     $errorMessage = 'Error creating transaction: ' + error.message;
-  //   } else {
-  //     $successMessage = `Transaction created with quantity: ${qty}`;
-  //     $quantity = 0; // Reset the input field after submission
-  //   }
-  // };
-
-
   
   const processTransaction = async () => {
     if (!item || amount <= 0) {
@@ -79,28 +58,6 @@
     }
   };
 
-
-    // const addOrUpdateProduct = (item) => {
-    //   if (item.id) {
-    //     // Update existing item
-    //     items = items.map(p => (p.id === item.id ? item : p));
-    //     selectedProduct = null; // Clear selection after update
-    //   } else {
-    //     // Add new item
-    //     item.id = Date.now().toString(); // Simple ID generation
-    //     items = [...items, item];
-    //   }
-    // };
-
-    // const deleteProduct = (id) => {
-    //   items = items.filter(item => item.id !== id);
-    //   selectedProduct = null; // Clear selection after deletion
-    // };
-
-    // const editProduct = (item) => {
-    //   selectedProduct = { ...item }; // Set the selected item for editing
-    // };
-
   const go = (id) => {
     goto(`/users/${id}/`);
   }; 
@@ -109,20 +66,6 @@
     goto(`/users/${id}`);
   };    
 </script>
-
-
-<!--
-  const handleAddToCart = () => {
-    const cartItem = {
-      id: item.id,
-      title: item.title,
-      price: item.price,
-      quantity: 1, // Default quantity
-    };
-    addToCart(cartItem);
-    goto('/checkout'); // Redirect to checkout
-  };
-</script> -->
 
 
 <form method="POST" class="p-4">
@@ -174,16 +117,13 @@
   <button on:click={() => deleteProduct(item)} class="text-blue-500 hover:underline">
     Delete
   </button> -->
-
-
-
-
   <!-- <button on:click={() => window.location.href = `/items/{data.item.id}/edit`}>Edit2</button> -->
   <!-- <ProductForm {selectedProduct} on:submit={addOrUpdateProduct} on:delete={deleteProduct} /> -->
 
-  <button on:click={re(item.id)}>home</button>
+            <!-- <button type="submit" class="bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-bold mt-3 min-w-[145px]">Submit</button> -->
+  <button type="submit" class="btn btn-primary">Save</button>
 
 </form>
 
-
+  <button on:click={re(item.id)}>home</button>
 

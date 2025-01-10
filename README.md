@@ -1,7 +1,9 @@
 ## SaaS Kit 
 
-- SvelteKit, Tailwind, shadcn-svelte, Postgres, and Supabase.
-- Additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
+- SvelteKit 2.5.20
+- Svelte 4.0.2
+
+Tailwind, shadcn-svelte, Postgres, and Supabase.
 
 > Based on [CriticalMoments/CMSaasStarter](https://github.com/CriticalMoments/CMSaasStarter) by the folks at [Critical Moments](https://criticalmoments.io)!
 
@@ -9,7 +11,6 @@
 - Marketing Page with SEO optimization
 - User Dashboard with user profile, user settings, update email/password, billing, and more.
 - Subscriptions powered by Stripe Checkout
-- Pricing page
 - Contact-us form
 - Style toolkit: theming and UI components
 - Responsive: designed for mobile and desktop.
@@ -155,9 +156,16 @@ If you prefer another host you can explore alternatives:
   - [ ] Add API endpoints and database tables as needed to deliver your SaaS product.
 
 
-
-
   let { data, error } = await supabase.auth.signUp({
     email: 'someone@email.com',
     password: 'dxZdjgbrlDAXpdNTBdxY'
   })
+
+
+{#if show}
+<div class="fixed inset-0 bg-black/60 flex flex-col justify-center items-center">
+  <div class="bg-white rounded-2xl p-6 max-w-md mx-auto w-full">
+    ...
+  </div>
+</div>
+{/if}

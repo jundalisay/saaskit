@@ -14,25 +14,25 @@
   let error = '';
   let sortOption = '';
 
-  console.log('Page Svelte Items: ', data.items);
+  console.log('Page Svelte Services: ', data.services);
 
   const go = (id) => {
-    goto(`/items/${id}`);
+    goto(`/services/${id}`);
   };
 </script>
 
 
 <svelte:head>
-  <title>Items</title>
+  <title>Services</title>
 </svelte:head>
 
 <!-- bind:value=sortOption on:change={handleSortChange}-->
 <div class="px-4">
 
   <div class="flex items-center justify-between p-4">
-    <h1 class="text-2xl font-bold">Items</h1>
+    <h1 class="text-2xl font-bold">Services</h1>
 
-    <Button on:click={()=> goto('/items/new')} class="flex flex-nowrap items-center gap-2">
+    <Button on:click={()=> goto('/services/new')} class="flex flex-nowrap items-center gap-2">
       <Cross class="h-4 w-4" /> Add
     </Button>
   </div>
@@ -61,11 +61,10 @@
     </form>
   </div>
 
-  <!-- on:add-to-cart={handleAddToCart}  -->
-<!-- filteredProducts() -->
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#if data.items}
-      {#each data.items as item}
+    {#if data.services}
+      {#each data.services as item}
         <div >
           <ItemCard {item} on:click={()=> go(item.id)} />          
         </div>
@@ -76,4 +75,3 @@
   </div>
 
 </div>
-
