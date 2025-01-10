@@ -347,50 +347,110 @@ const penguinDataBySpecies = [
           props={{ group: { y: 80 } }}
         />
       </div>
-
-
     </div>
 
     <!-- Part 4 -->
     <div class="bg-white p-6 rounded-lg shadow-md">
-      <h2 class="text-xl font-bold">Top Products and Services</h2>
+      <h2 class="text-xl font-bold">Emissions by Department</h2>
       <small>...</small>
 
-<div class="h-[300px] p-4 border rounded">
-  <AreaChart
-    data={multiSeriesData}
-    x="date"
-    series={[
-      { key: "apples", color: "hsl(var(--color-danger))" },
-      {
-        key: "bananas",
-        color: "hsl(var(--color-success))",
-      },
-      {
-        key: "oranges",
-        color: "hsl(var(--color-warning))",
-      },
-    ]}
-  />
-</div>
+      <div class="h-[300px] p-4 border rounded">
+        <AreaChart
+          data={multiSeriesData}
+          x="date"
+          series={[
+            { key: "apples", color: "hsl(var(--color-danger))" },
+            {
+              key: "bananas",
+              color: "hsl(var(--color-success))",
+            },
+            {
+              key: "oranges",
+              color: "hsl(var(--color-warning))",
+            },
+          ]}
+        />
+      </div>
+    </div>
 
 
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold">Leaderboard</h2>
+      <small>...</small>
 
+      <div class="flex justify-center">
+        <div class="bg-white p-4 rounded-lg shadow-lg w-full max-w-4xl">
 
-</div>
+          <div class="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
+
+            <img src="/avatars/1.jpg" alt="Employee Avatar" class="w-16 h-16 rounded-full border border-gray-300">
+
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                <p class="text-sm text-gray-600">Department: HR</p>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">$60,000 / year</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
+
+            <img src="/avatars/2.jpg" alt="Employee Avatar" class="w-16 h-16 rounded-full border border-gray-300">
+
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                <p class="text-sm text-gray-600">Department: HR</p>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">$60,000 / year</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
+
+            <img src="/avatars/3.jpg" alt="Employee Avatar" class="w-16 h-16 rounded-full border border-gray-300">
+
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                <p class="text-sm text-gray-600">Department: HR</p>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">$60,000 / year</p>
+            </div>
+          </div>      
+
+          <div class="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
+
+            <img src="/avatars/4.jpg" alt="Employee Avatar" class="w-16 h-16 rounded-full border border-gray-300">
+
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                <p class="text-sm text-gray-600">Department: HR</p>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">$60,000 / year</p>
+            </div>
+          </div>    
+
+          <div class="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
+
+            <img src="/avatars/5.jpg" alt="Employee Avatar" class="w-16 h-16 rounded-full border border-gray-300">
+
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                <p class="text-sm text-gray-600">Department: HR</p>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">$60,000 / year</p>
+            </div>
+          </div>          
+        </div>
+      </div>
+
 
     </div>
 
   </div>
-
-
-
-
-  <h2>Summary Statistics</h2>
-
-  <h2>Users with Most Transactions, Least Carbon Emissions</h2>
-<!--     {#each data as user}
-      <li>User {user.name} with transactions, emitting kg of carbon.</li>
-    {/each} -->
 
 </section>
